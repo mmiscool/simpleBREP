@@ -1,0 +1,11 @@
+{
+  "name": "BREPkernel",
+  "version": "1.0.9",
+  "author": "mmiscool",
+  "license": "See License.md",
+  "description": "A tool to make AI coding tasks easy",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.170.0"
+  }
+}
