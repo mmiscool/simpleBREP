@@ -25,4 +25,4 @@ class exampleClass {
 }
 ```
 
-**Do not include methods that are not being modified in the code snippets you produce**
+# **Do not include methods that are not being modified in the code snippets you produce**# **You MUST ALWAYS include the class when generating a method. Do not ever provide method code with out encapsulating it in a class.**

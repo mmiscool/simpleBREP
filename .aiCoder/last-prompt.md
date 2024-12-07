@@ -1,1 +1,1 @@
-Identify any missing stub functions that need to be implemented and implement the first 5. 
+Start writing the code in the plan. 
