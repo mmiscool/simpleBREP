@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the _findUVOnSurface method in the SurfaceTrimmer class.\nRemember to respond with a snippet in the form of the following:\n```\nclass SurfaceTrimmer {\n    _findUVOnSurface(surface, point) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass SurfaceTrimmer {\n    _findUVOnSurface(surface, point) {\n        const uMin = surface.getKnotsU()[0];\n        const uMax = surface.getKnotsU()[surface.getKnotsU().length - 1];\n        const vMin = surface.getKnotsV()[0];\n        const vMax = surface.getKnotsV()[surface.getKnotsV().length - 1];\n        let u = (uMin + uMax) / 2;\n        let v = (vMin + vMax) / 2;\n        const tolerance = 0.001;\n        const maxIterations = 20;\n        for (let i = 0; i < maxIterations; i++) {\n            const surfacePoint = surface.evaluate(u, v);\n             if(!surfacePoint){\n                 return null;\n             }\n            const diff = new Vector3D(surfacePoint.getX() - point.getX(), surfacePoint.getY() - point.getY(), surfacePoint.getZ() - point.getZ());\n            if (diff.magnitude() < tolerance) {\n                return { u: u, v: v };\n            }\n            const jacobian = this._calculateJacobian(surface, u, v);\n             if(!jacobian){\n                return null;\n            }\n            const invJacobian = this._inverse2x2(jacobian);\n            if(!invJacobian){\n                return null;\n            }\n            const deltaU = invJacobian[0][0] * diff.getX() + invJacobian[0][1] * diff.getY() + invJacobian[0][2] * diff.getZ();\n            const deltaV = invJacobian[1][0] * diff.getX() + invJacobian[1][1] * diff.getY() + invJacobian[1][2] * diff.getZ();\n           \n            u -= deltaU;\n            v -= deltaV;\n            u = Math.max(uMin, Math.min(u, uMax));\n            v = Math.max(vMin, Math.min(v, vMax));\n        }\n        return null;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation Plan",
+  "id": "20250118_015736853Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T01:57:42.436Z"
+}

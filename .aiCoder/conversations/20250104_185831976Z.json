@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Find the first class method that is incomplete or a stub. Implement it.",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    // ... existing methods\n\n    split(t) {\n        const n = this.knotVector.length - this.degree - 1;\n        const span = this.findSpan(n, this.degree, t, this.knotVector);\n\n        // Insert knot t repeatedly until it has multiplicity degree + 1\n        let knotVector = [...this.knotVector];\n        let controlPoints = [...this.controlPoints];\n        while (knotVector.filter(k => k === t).length <= this.degree) {\n            const { knotVector: newKnotVector, controlPoints: newControlPoints } = this.insertKnot(t, knotVector, controlPoints);\n            knotVector = newKnotVector;\n            controlPoints = newControlPoints;\n        }\n\n        // Split at the index where the knot t has multiplicity degree + 1\n        const splitIndex = knotVector.indexOf(t, knotVector.indexOf(t) + 1);\n        const leftKnotVector = knotVector.slice(0, splitIndex + 1);\n        const rightKnotVector = knotVector.slice(splitIndex);\n        const leftControlPoints = controlPoints.slice(0, splitIndex - this.degree + 1);\n        const rightControlPoints = controlPoints.slice(splitIndex - this.degree + 1);\n\n        const leftCurve = new NurbsCurve(leftKnotVector, leftControlPoints, this.degree, this.dimension);\n        const rightCurve = new NurbsCurve(rightKnotVector, rightControlPoints, this.degree, this.dimension);\n        return [leftCurve, rightCurve];\n    }\n\n    // ... other methods\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Enhancing a NURBS library in JavaScript",
+  "id": "20250104_185831976Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T18:58:37.256Z"
+}

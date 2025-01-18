@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the _doEdgesIntersect method in the BooleanOperation class.\nRemember to respond with a snippet in the form of the following:\n```\nclass BooleanOperation {\n    _doEdgesIntersect(edge1, edge2) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass BooleanOperation {\n    _doEdgesIntersect(edge1, edge2) {\n        if (!edge1 || !edge2) {\n            return false;\n        }\n        const curve1 = edge1.getCurve();\n        const curve2 = edge2.getCurve();\n        if (!curve1 || !curve2) {\n            const p1Start = edge1.getStartVertex().getPoint();\n            const p1End = edge1.getEndVertex().getPoint();\n            const p2Start = edge2.getStartVertex().getPoint();\n            const p2End = edge2.getEndVertex().getPoint();\n             if(this._doLineSegmentsIntersect(p1Start,p1End,p2Start,p2End)){\n                 return true;\n             } else {\n                 return false;\n             }\n\n        }\n        const numSamples = 10;\n        const start1 = curve1.getKnots()[0];\n        const end1 = curve1.getKnots()[curve1.getKnots().length - 1];\n        const step1 = (end1 - start1) / numSamples;\n         const start2 = curve2.getKnots()[0];\n        const end2 = curve2.getKnots()[curve2.getKnots().length - 1];\n        const step2 = (end2 - start2) / numSamples;\n        const points1 = [];\n         const points2 = [];\n        for (let i = 0; i <= numSamples; i++) {\n            const u = start1 + i * step1;\n            const point = curve1.evaluate(u);\n             if (point) {\n                points1.push(point);\n             }\n        }\n         for (let i = 0; i <= numSamples; i++) {\n            const u = start2 + i * step2;\n            const point = curve2.evaluate(u);\n             if (point) {\n                points2.push(point);\n             }\n        }\n         for (let i = 0; i < points1.length - 1; i++) {\n             for (let j = 0; j < points2.length - 1; j++) {\n                const p1Start = points1[i];\n                const p1End = points1[i + 1];\n                const p2Start = points2[j];\n                const p2End = points2[j + 1];\n                 if(this._doLineSegmentsIntersect(p1Start,p1End,p2Start,p2End)){\n                     return true;\n                 }\n\n            }\n         }\n        return false;\n    }\n     _doLineSegmentsIntersect(p1Start, p1End, p2Start, p2End) {\n        const x1 = p1Start.getX();\n        const y1 = p1Start.getY();\n        const x2 = p1End.getX();\n        const y2 = p1End.getY();\n        const x3 = p2Start.getX();\n        const y3 = p2Start.getY();\n        const x4 = p2End.getX();\n        const y4 = p2End.getY();\n        const det = (x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1);\n        if (det === 0) {\n            return false;\n        }\n        const t = ((x3 - x1) * (y4 - y3) - (x4 - x3) * (y3 - y1)) / det;\n        const u = -((x1 - x2) * (y3 - y1) - (x3 - x1) * (y1 - y2)) / det;\n        return t >= 0 && t <= 1 && u >= 0 && u <= 1;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation Plan",
+  "id": "20250118_020221636Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T02:02:29.984Z"
+}

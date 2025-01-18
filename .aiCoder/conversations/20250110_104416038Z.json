@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the pointAt method in the Surface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Surface {\n    pointAt(u, v) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Surface {\n    pointAt(u, v) {\n        if (this.type === 'plane') {\n            const origin = this.parameters.origin || { x: 0, y: 0, z: 0 };\n            const normal = this.parameters.normal || { x: 0, y: 0, z: 1 };\n            const uDir = this.parameters.uDir || { x: 1, y: 0, z: 0 };\n             const vDir = this.parameters.vDir || {x:0, y:1, z:0};\n\n            const point = {\n                x: origin.x + u * uDir.x + v * vDir.x,\n                y: origin.y + u * uDir.y + v * vDir.y,\n                z: origin.z + u * uDir.z + v * vDir.z\n            };\n            return point;\n        } else if (this.type === 'sphere') {\n             const center = this.parameters.center || {x:0, y:0, z:0};\n             const radius = this.parameters.radius || 1;\n\n            const x = center.x + radius * Math.cos(v) * Math.cos(u);\n            const y = center.y + radius * Math.cos(v) * Math.sin(u);\n            const z = center.z + radius * Math.sin(v);\n\n            return {x, y, z};\n        }\n        else if (this.type === 'cylinder') {\n          const origin = this.parameters.origin || {x: 0, y: 0, z: 0};\n          const axis = this.parameters.axis || {x:0, y:0, z:1};\n          const radius = this.parameters.radius || 1;\n\n            const x = origin.x + radius * Math.cos(u) + v * axis.x;\n            const y = origin.y + radius * Math.sin(u) + v * axis.y;\n            const z = origin.z + v * axis.z;\n\n            return {x,y,z};\n        }\n         else if (this.type === 'cone'){\n            const origin = this.parameters.origin || {x:0, y:0, z:0};\n            const apex = this.parameters.apex || {x:0, y:0, z:1};\n            const angle = this.parameters.angle || Math.PI/4;\n            const height = Math.sqrt(Math.pow(apex.x - origin.x, 2) + Math.pow(apex.y - origin.y,2) + Math.pow(apex.z - origin.z, 2));\n            const direction = {x: apex.x - origin.x, y: apex.y - origin.y, z: apex.z - origin.z};\n            const magnitude = Math.sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z)\n            const axis = {x: direction.x/magnitude, y: direction.y/magnitude, z: direction.z/magnitude}\n\n\n            const r = v * Math.tan(angle);\n              const x = origin.x + r * Math.cos(u) + v*axis.x;\n              const y = origin.y + r * Math.sin(u) + v * axis.y;\n              const z = origin.z + v*axis.z;\n\n            return {x,y,z}\n\n        }\n        else if(this.type === 'nurbs'){\n          if(!this.parameters.nurbsSurface) {\n             return null;\n          }\n          return this.parameters.nurbsSurface.evaluate(u,v)\n        }\n        return null;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library for BREP Kernel",
+  "id": "20250110_104416038Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:44:24.250Z"
+}

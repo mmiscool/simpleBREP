@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the _basisFunctionV method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    _basisFunctionV(i, v) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    _basisFunctionV(i, v) {\n        const { vKnotVector, vDegree } = this;\n        const knots = vKnotVector;\n        if (v < knots[i] || v >= knots[i + 1]) {\n            return 0;\n        }\n        if (vDegree === 0) {\n            return v >= knots[i] && v < knots[i + 1] ? 1 : 0;\n        }\n\n        const denom1 = knots[i + vDegree] - knots[i];\n        const denom2 = knots[i + vDegree + 1] - knots[i + 1];\n        \n        const left = denom1 !== 0 ? this._basisFunctionV(i, v, vDegree - 1) * (v - knots[i]) / denom1 : 0;\n        const right = denom2 !== 0 ? this._basisFunctionV(i + 1, v, vDegree - 1) * (knots[i + vDegree + 1] - v) / denom2 : 0;\n\n        return left + right;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement _basisFunctionV.NurbsSurface",
+  "id": "20250101_083738878Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T08:37:42.765Z"
+}

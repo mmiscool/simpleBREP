@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the calculateDerivative method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    calculateDerivative(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    constructor(controlPoints, knotVector, degrees) {\n        this.controlPoints = controlPoints;\n        this.knotVector = knotVector;\n        this.degrees = degrees;\n    }\n\n    calculateDerivative(t) {\n        const n = this.degrees.length;\n        const p = this.controlPoints;\n        const N = this.basisFunctions(t);\n        const dpN = this.basisFunctionDerivatives(t);\n\n        let dP = new Array(n * 3).fill(0);\n\n        for (let i = 0; i < n; i++) {\n            for (let j = 0; j <= this.degrees[i]; j++) {\n                const index = i * 3 + j;\n                for (let k = 0; k < 3; k++) {\n                    dP[index] += dpN[i][j] * N[i][j] * p[(i - j + this.degrees[i]) % p.length][k];\n                }\n            }\n        }\n\n        return dP;\n    }\n\n    basisFunctions(t) {\n        const n = this.degrees.length;\n        const knotVector = this.knotVector;\n        const N = new Array(n);\n\n        for (let i = 0; i < n; i++) {\n            N[i] = new Array(this.degrees[i] + 1).fill(0);\n\n            for (let j = Math.max(0, this.findSpan(t, i, knotVector)); j <= Math.min(this.degrees[i], this.findSpan(1 - t, i + 1, knotVector)); j++) {\n                N[i][j] = Math.pow(t - knotVector[i * (n + 1) + j], this.degrees[i]) * Math.pow(1 - t + knotVector[i * (n + 1) + j + this.degrees[i] + 1], this.degrees[i] - j);\n            }\n\n            for (let j = N[i].length - 2; j >= 0; j--) {\n                N[i][j] /= N[i][j + 1];\n            }\n        }\n\n        return N;\n    }\n\n    basisFunctionDerivatives(t) {\n        const n = this.degrees.length;\n        const knotVector = this.knotVector;\n        const dpN = new Array(n);\n\n        for (let i = 0; i < n; i++) {\n            dpN[i] = new Array(this.degrees[i] + 1).fill(0);\n\n            for (let j = Math.max(0, this.findSpan(t, i, knotVector)); j <= Math.min(this.degrees[i], this.findSpan(1 - t, i + 1, knotVector)); j++) {\n                const p = this.degrees[i] - j;\n                dpN[i][j] = p * (Math.pow(t - knotVector[i * (n + 1) + j], p - 1) * Math.pow(1 - t + knotVector[i * (n + 1) + j + this.degrees[i] + 1], this.degrees[i] - j) +\n                    Math.pow(t - knotVector[i * (n + 1) + j + this.degrees[i] + 1], p) * Math.pow(1 - t + knotVector[i * (n + 1) + j + this.degrees[i] + 2], this.degrees[i] - j));\n            }\n\n            for (let j = 1; j < dpN[i].length; j++) {\n                dpN[i][j] /= dpN[i][j - 1];\n            }\n        }\n\n        return dpN;\n    }\n\n    findSpan(t, i, knotVector) {\n        let m = this.degrees[i];\n        const n = knotVector.length - 1;\n\n        while (m > 0 && knotVector[(i + 1) * (n + 1) + m] == knotVector[i * (n + 1) + m]) {\n            m--;\n        }\n\n        return m;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement calculateDerivative.NurbsCurve3D",
+  "id": "20241223_173845875Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:39:12.162Z"
+}

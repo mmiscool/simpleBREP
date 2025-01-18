@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the constructor method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    constructor(degree, controlPoints, knots, weights) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(degree, controlPoints, knots, weights) {\n        this.degree = degree;\n        this.controlPoints = controlPoints;\n        this.knots = knots;\n        this.weights = weights;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Class Implementation",
+  "id": "20250118_014453505Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T01:44:55.011Z"
+}

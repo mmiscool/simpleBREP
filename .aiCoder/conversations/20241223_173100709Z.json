@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the evaluate method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    evaluate(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nimport * as math from 'gl-matrix'; // Assuming gl-matrix library for matrix operations\n\nclass NurbsCurve {\n    constructor(knotVector, controlPoints, degree, dimension) {\n        this.knotVector = knotVector;\n        this.controlPoints = controlPoints;\n        this.degree = degree;\n        this.dimension = dimension;\n    }\n\n    evaluate(t) {\n        const n = this.controlPoints.length - 1;\n        if (n <= this.degree || t < 0 || t > 1) return null;\n\n        const A = new Array(this.degree + 1);\n        for (let i = 0; i <= this.degree; i++) {\n            A[i] = math.clone(this.controlPoints[(this.degree - i)]);\n        }\n\n        let P = math.clone(A[this.degree]);\n\n        for (let i = this.degree - 1; i >= this.degree - this.degree; i--) {\n            const N = this._basisFunction(i, t);\n            const M = N * (1 - t) + (1 - N) * math.dot(this.knotVector[(i + 1)], this.knotVector[i + this.dimension + 2]);\n            P = math.add(P, math.scale(M, A[i]));\n        }\n\n        return P;\n    }\n\n    _basisFunction(i, t) {\n        let N = 0;\n        for (let j = i; j <= this.degree; j++) {\n            if (t < this.knotVector[(j + 1)]) break;\n            const w = 1 / (this.knotVector[(j + 1)] - this.knotVector[j]);\n            N += math.multiply(w, N);\n        }\n\n        return N;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement evaluate.NurbsCurve",
+  "id": "20241223_173100709Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:31:12.668Z"
+}

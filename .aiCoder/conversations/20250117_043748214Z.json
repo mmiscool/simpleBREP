@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Look at the BooleanOperation class. Determine if we are missing any edge cases that need to be handled.\n\nAddress the first problem you find.\n\nRemember to only produce code snippets that follow the formatting rules.",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass BooleanOperation {\n    constructor() {\n        this.trimmer = new SurfaceTrimmer();\n        this.tolerance = 0.0001;\n    }\n    union(solid1, solid2) {\n        if (!solid1 || !solid2) {\n            return new Solid([]);\n        }\n        if (solid1.volume() < this.tolerance || solid2.volume() < this.tolerance) {\n            return new Solid([]);\n        }\n        const resultSolid = solid1.copy();\n        for (const shell of solid2.getShells()) {\n            for (const face of shell.getFaces()) {\n                const newFace = new Face(face.surface, face.outerLoop, [...face.innerLoops]);\n                resultSolid.addFace(newFace);\n            }\n        }\n        return resultSolid;\n    }\n    intersect(solid1, solid2) {\n        if (!solid1 || !solid2) {\n            return new Solid([]);\n        }\n         if (solid1.volume() < this.tolerance || solid2.volume() < this.tolerance) {\n            return new Solid([]);\n        }\n        let resultSolid = new Solid([]);\n        this.edges = [];\n        for (const shell1 of solid1.getShells()) {\n            const newShell = new Shell([]);\n            for (const face1 of shell1.getFaces()) {\n                if (this._hasSelfIntersections(face1.getSurface())) {\n                    continue;\n                }\n                for (const shell2 of solid2.getShells()) {\n                    for (const face2 of shell2.getFaces()) {\n                         if (this._hasSelfIntersections(face2.getSurface())) {\n                            continue;\n                        }\n                        let isFace1InsideFace2 = false;\n                        let isFace2InsideFace1 = false;\n                        if (this._isCoincident(face1.getSurface(), face2.getSurface())) {\n                             isFace1InsideFace2 = this._isFaceInside(face1.getSurface(), face2.getSurface());\n                            isFace2InsideFace1 = this._isFaceInside(face2.getSurface(), face1.getSurface());\n                             if (isFace1InsideFace2) {\n                                newShell.addFace(face1);\n                            }\n                            if (isFace2InsideFace1) {\n                                newShell.addFace(face2);\n                            }\n                            continue;\n                        }\n                        const intersectionData = this._findSurfaceIntersections(face1.getSurface(), face2.getSurface());\n                         if (!intersectionData || intersectionData.curves.length === 0) {\n                            isFace1InsideFace2 = this._isFaceInside(face1.getSurface(), face2.getSurface());\n                            isFace2InsideFace1 = this._isFaceInside(face2.getSurface(), face1.getSurface());\n                            if (isFace1InsideFace2) {\n                                newShell.addFace(face1);\n                            }\n                            if (isFace2InsideFace1) {\n                                newShell.addFace(face2);",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Development",
+  "id": "20250117_043748214Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-17T04:38:01.052Z"
+}

@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the refine method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    refine(u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    refine(u) {\n        if (u < this.knotVector[0] || u > this.knotVector[this.knotVector.length - 1]) {\n            throw new Error(\"Parameter u is out of range of the knot vector.\");\n        }\n        const n = this.controlPoints.length - 1;\n        const p = this.degree;\n        const U = this.knotVector;\n        let span = this.findSpan(n, p, u, U);\n        if (span === -1)\n            return null;\n\n        const newKnotVector = [...U];\n        newKnotVector.splice(span + 1, 0, u);\n\n        const newControlPoints = [];\n        for (let i = 0; i <= n; i++){\n            newControlPoints.push([...this.controlPoints[i]])\n        }\n        \n        const alpha = new Array(p + 1).fill(0);\n\n        for (let i = 1; i <= p; i++) {\n            alpha[i] = (u - U[span + 1 - i]) / (U[span + i] - U[span + 1 - i]);\n        }\n\n\n        for (let i = 1; i <= p; i++) {\n            const newControlPoint = []\n            for(let j=0; j < this.dimension; j++){\n                newControlPoint.push(alpha[i] * newControlPoints[span - p + i][j] + (1 - alpha[i]) * newControlPoints[span - p + i - 1][j]);\n            }\n            if(this.isRational){\n                newControlPoint.push(alpha[i] * newControlPoints[span - p + i][this.dimension] + (1 - alpha[i]) * newControlPoints[span - p + i - 1][this.dimension]);\n            }\n             newControlPoints[span - p + i] = newControlPoint;\n        }\n\n        this.knotVector = newKnotVector;\n        this.controlPoints = newControlPoints;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation",
+  "id": "20250110_103626983Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:36:31.683Z"
+}

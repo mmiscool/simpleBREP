@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunctionV method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    basisFunctionV(v) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    constructor(controlPoints, knotsU, knotsV, degreesU, degreesV) {\n        this.controlPoints = controlPoints;\n        this.knotsU = knotsU;\n        this.knotsV = knotsV;\n        this.degreesU = degreesU;\n        this.degreesV = degreesV;\n    }\n\n    basisFunctionV(v, i) {\n        const ni = this.degreesV[i];\n        const Pi = this.controlPoints[i];\n\n        let Ni0 = 1;\n        let Ni1 = v - this.knotsV[i];\n\n        for (let j = 1; j < ni; j++) {\n            Ni0 = Ni1 / (this.knotsV[i + j] - this.knotsV[i]);\n            Ni1 = Ni0 * (v - this.knotsV[i + j]);\n        }\n\n        return Ni1;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunctionV.NurbsSurface",
+  "id": "20241223_010954043Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:10:04.679Z"
+}

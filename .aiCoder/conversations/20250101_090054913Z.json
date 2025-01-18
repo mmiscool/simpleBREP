@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the setControlPointWeight method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    setControlPointWeight(index, weight) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    setControlPointWeight(index, weight) {\n         if (index < 0 || index >= this.weights.length) {\n            console.error('Control point index out of bounds.');\n            return;\n        }\n        if(typeof weight !== 'number'){\n             console.error('Weight must be a number.');\n             return;\n        }\n        this.weights[index] = weight;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement setControlPointWeight.NurbsCurve3D",
+  "id": "20250101_090054913Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:00:57.506Z"
+}

@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the setKnotVector method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    setKnotVector(knotVector) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(controlPoints, knotVector) {\n        this.controlPoints = controlPoints;\n        this.knotVector = knotVector;\n    }\n\n    setKnotVector(knotVector) {\n        if (!Array.isArray(knotVector)) throw new Error(\"Knot vector must be an array.\");\n\n        const n = this.knotVector.length - 1;\n        for (let i = 0; i < knotVector.length; i++) {\n            if (!(0 <= i && i < n + 1)) continue;\n\n            this.knotVector[i] = knotVector[i];\n        }\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement setKnotVector.NurbsCurve",
+  "id": "20241223_170422338Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:04:27.752Z"
+}

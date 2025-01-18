@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the calculateBasisFunctions method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    calculateBasisFunctions(pu, degree) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    calculateBasisFunctions(pu, degree) {\n        const basisFunctions = new Array(degree + 1).fill(0);\n        basisFunctions[0] = 1;\n\n        const tmp = new Array(degree + 1).fill(0);\n        for (let d = 1; d <= degree; d++) {\n            // Clear temporary storage\n            tmp.fill(0);\n            for (let j = 0; j < d; j++) {\n                const left = pu - this.knots[j];\n                const right = this.knots[j + d] - pu;\n\n                const denom = this.knots[j + d] - this.knots[j];\n                if (denom !== 0) {\n                    tmp[j] = (basisFunctions[j] * left) / denom;\n                }\n                if (j + 1 <= d) {\n                    tmp[j + 1] += (basisFunctions[j + 1] * right) / denom;\n                }\n            }\n            // Update basis functions for the next iteration\n            for (let j = 0; j <= d; j++) {\n                basisFunctions[j] = tmp[j];\n            }\n        }\n        return basisFunctions;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement calculateBasisFunctions.NurbsSurface",
+  "id": "20241223_011207040Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:12:13.900Z"
+}

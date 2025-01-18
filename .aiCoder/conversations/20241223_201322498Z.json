@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the getDegree method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    getDegree() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here is the implementation of the `getDegree` method for the `NurbsCurve3D` class:\n\n```javascript\nclass NurbsCurve3D {\n  constructor(knots, controlPoints) {\n    this.knots = knots;\n    this.controlPoints = controlPoints;\n  }\n\n  getDegree() {\n    // Calculate the degree of a NURBS curve using the formula: deg = number of control points - number of basis functions + 1\n    const numBasisFunctions = this.knots.length - this.controlPoints.length;\n    return this.controlPoints.length - numBasisFunctions + 1;\n  }\n}\n```\n\nThis method calculates the degree of a NURBS curve using the formula: `deg = number of control points - number of basis functions + 1`. It first determines the number of basis functions by subtracting the length of control points from the knots' length. Then, it returns the degree by adding 1 to the result and subtracting the number of basis functions."
+    }
+  ],
+  "title": "Implement getDegree.NurbsCurve3D",
+  "id": "20241223_201322498Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T20:13:28.704Z"
+}

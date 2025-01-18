@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the evaluate method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    evaluate(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(knotVector, controlPoints, degree, dimension) {\n        if (!Array.isArray(controlPoints) || !Array.isArray(knotVector)) {\n            throw new Error('Control points and knot vector must be arrays.');\n        }\n        this._knotVector = knotVector;\n        this._controlPoints = controlPoints;\n        this._degree = degree;\n        this._dimension = dimension;\n    }\n\n    evaluate(t) {\n        if (t < 0 || t > 1) {\n            throw new Error('Parameter t must be within [0, 1].');\n        }\n\n        const n = this._controlPoints.length - this._degree - 1;\n        let p = Array(this._dimension).fill(0);\n\n        for (let i = 0; i <= this._degree; ++i) {\n            const k1 = this._knotVector[i];\n            const k2 = this._knotVector[i + this._degree + 1];\n\n            p[0] += ((t - k1) * (t - k2) / (k2 - k1)) * this._controlPoints[i][0];\n        }\n\n        return p;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement evaluate.NurbsCurve",
+  "id": "20241222_221353095Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:14:00.855Z"
+}

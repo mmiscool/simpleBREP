@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the splitCurve method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    splitCurve(u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    splitCurve(u) {\n        if (u < this.knots[0] || u > this.knots[this.knots.length - 1]) {\n            return null;\n        }\n        const n = this.controlPoints.length - 1;\n        const p = this.degree;\n        const knots = this.knots;\n        const span = Utils.findSpan(n, p, u, knots);\n        let newKnots = [...knots];\n        let newControlPoints = [...this.controlPoints];\n        let newWeights = [...this.weights];\n        let k = 0;\n        for (let i = 0; i < knots.length; i++) {\n            if (knots[i] === u) {\n                k++;\n            }\n        }\n         let multiplicity = p + 1 - k;\n        if (multiplicity > 0) {\n             this.insertKnot(u, multiplicity);\n             newKnots = this.knots;\n            newControlPoints = this.controlPoints;\n            newWeights = this.weights;\n        }\n        const spanSplit = Utils.findSpan(newControlPoints.length -1, p, u, newKnots);\n       \n        const curve1ControlPoints = newControlPoints.slice(0, spanSplit + 1);\n        const curve1Weights = newWeights.slice(0, spanSplit + 1);\n        const curve1Knots = newKnots.slice(0, spanSplit + p + 2);\n      \n        const curve2ControlPoints = newControlPoints.slice(spanSplit);\n        const curve2Weights = newWeights.slice(spanSplit);\n         const curve2Knots = newKnots.slice(spanSplit );\n\n        const curve1 = new NurbsCurve(this.degree, curve1ControlPoints, curve1Knots, curve1Weights);\n        const curve2 = new NurbsCurve(this.degree, curve2ControlPoints, curve2Knots, curve2Weights);\n        return [curve1, curve2];\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation in JavaScript",
+  "id": "20250118_014604920Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T01:46:09.224Z"
+}

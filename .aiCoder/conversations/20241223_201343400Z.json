@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the setControlPointWeight method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    setControlPointWeight(index, weight) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    constructor() {\n        this.controlPoints = [];\n        this.weights = [];\n    }\n\n    setControlPointWeight(index, weight) {\n        if (index < 0 || index >= this.controlPoints.length) {\n            throw new Error('Invalid control point index');\n        }\n\n        if (weight <= 0) {\n            throw new Error('Weight must be greater than zero');\n        }\n\n        this.weights[index] = weight;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement setControlPointWeight.NurbsCurve3D",
+  "id": "20241223_201343400Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T20:13:46.770Z"
+}

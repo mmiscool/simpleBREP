@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the evaluate method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    evaluate(u, v) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here's the `evaluate` method for the `NurbsSurface` class, using ES6+ standards and best practices:\n\n```javascript\nimport * as math from 'gl-matrix';\n\nclass NurbsSurface {\n    constructor(uKnotVector, vKnotVector, controlPointsU, controlPointsV, uDegree, vDegree) {\n        this.uKnotVector = uKnotVector;\n        this.vKnotVector = vKnotVector;\n        this.controlPointsU = controlPointsU;\n        this.controlPointsV = controlPointsV;\n        this.uDegree = uDegree;\n        this.vDegree = vDegree;\n    }\n\n    evaluate(u, v) {\n        const m = this.controlPointsU.length - 1;\n        const n = this.controlPointsV.length - 1;\n\n        if (m <= this.uDegree || n <= this.vDegree || u < 0 || u > 1 || v < 0 || v > 1)\n            return null;\n\n        const P = new Array(this.uDegree + 1);\n        for (let i = 0; i <= this.uDegree; i++) {\n            P[i] = math.clone(this.controlPointsU[this.uDegree - i]);\n        }\n\n        let Q = math.clone(P[this.uDegree]);\n        for (let i = this.uDegree - 1; i >= Math.max(0, this.uDegree - this.uDegree); i--) {\n            const Nu = this._basisFunctionU(i, u);\n            const Mu = Nu * (1 - u) + (1 - Nu) * math.dot(this.uKnotVector[i + 1], this.uKnotVector[i + this.vDegree + 2]);\n\n            Q = this._evaluateV(Q, v, Mu);\n        }\n\n        const S = new Array(this.vDegree + 1);\n        for (let j = 0; j <= this.vDegree; j++) {\n            S[j] = math.clone(this.controlPointsV[this.vDegree - j]);\n        }\n\n        let T = math.clone(S[this.vDegree]);\n        for (let j = this.vDegree - 1; j >= Math.max(0, this.vDegree - this.vDegree); j--) {\n            const Nv = this._basisFunctionV(j, v);\n            const Mv = Nv * (1 - v) + (1 - Nv) * math.dot(this.vKnotVector[j + 1], this.vKnotVector[j + this.uDegree + 2]);\n\n            T = math.add(T, math.scale(Mv, Q));\n        }\n\n        return T;\n    }\n\n    _basisFunctionU(i, u) {\n        let Nu = 0;\n        for (let j = i; j <= this.uDegree; j++) {\n            if (u < this.uKnotVector[j + 1])\n                break;\n            const w = 1 / (this.uKnotVector[j + 1] - this.uKnotVector[j]);\n            Nu += math.multiply(w, Nu);\n        }\n        return Nu;\n    }\n\n    _basisFunctionV(i, v) {\n        let Nv = 0;\n        for (let j = i; j <= this.vDegree; j++) {\n            if (v < this.vKnotVector[j + 1])\n                break;\n            const w = 1 / (this.vKnotVector[j + 1] - this.vKnotVector[j]);\n            Nv += math.multiply(w, Nv);\n        }\n        return Nv;\n    }\n\n    _evaluateV(Q, v, Mu) {\n        const m = this.controlPointsU.length - 1;\n\n        let Pv = new Array(m + 1);\n        for (let i = 0; i <= m; i++) {\n            Pv[i] = math.clone(Q[i]);\n        }\n\n        for (let i = m - 1; i >= Math.max(0, m - this.uDegree); i--) {\n            const Nu = this._basisFunctionU(i, Mu);\n\n            Pv[i] = this._evaluateVU(Pv[i], v, Nu);\n        }\n\n        return Pv[m];\n    }\n\n    _evaluateVU(P, v, Nu) {\n        let Qv = math.clone(P);\n\n        for (let j = Math.max(0, this.uDegree - 1); j >= 0; j--) {\n            const Nvj = this._basisFunctionV(j, v);\n\n            Qv = math.add(Qv, math.scale(Nvj, P[j]));\n        }\n\n        return Nu * Qv + (1 - Nu) * P[Nu];\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement evaluate.NurbsSurface",
+  "id": "20241223_173155715Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:32:26.443Z"
+}

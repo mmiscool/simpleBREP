@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the split method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    split(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor() {\n        // NurbsCurve constructor implementation\n    }\n\n    split(t) {\n        const knots = this.getKnots();\n        const deg = this.degree;\n        const n = knots.length - 1;\n        const p = this.controlPoints;\n\n        if (t < knots[deg] || t > knots[n - deg]) {\n            throw new Error('Split value out of bounds');\n        }\n\n        let u0 = 0, v0 = 0, u1 = 0, v1 = 0;\n        for (let i = deg; i < n - deg; ++i) {\n            if (knots[i + 1] <= t && knots[i] >= t) {\n                const alpha = (t - knots[i]) / (knots[i + 1] - knots[i]);\n\n                for (let j = 0; j < deg + 1; ++j) {\n                    u0 += alpha * p[(i - deg + j) * (deg + 1)];\n                    v0 += alpha * ((i - deg + 1) + j);\n                }\n\n                for (let j = 0; j < deg + 1; ++j) {\n                    u1 += (1 - alpha) * p[(i - deg + j) * (deg + 1)];\n                    v1 += (1 - alpha) * ((i - deg + 1) + j);\n                }\n\n                break;\n            }\n        }\n\n        return [new NurbsCurve({ controlPoints: u0, knots: [...knots.slice(0, i), t, t, knots[i + 1], ...knots.slice(i + 2)], degree: deg }),\n              new NurbsCurve({ controlPoints: u1, knots: [...knots.slice(0, i + 1), knots[i + 1], t, t, knots[n - deg]], degree: deg })];\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement split.NurbsCurve",
+  "id": "20250104_024435138Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-04T02:44:47.683Z"
+}

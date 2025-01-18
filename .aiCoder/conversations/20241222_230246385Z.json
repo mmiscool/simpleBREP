@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Modify the nurbsBasis method in the NurbsSurface class.\nImprove it.\n\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    nurbsBasis(param, index, p, knots) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    nurbsBasis(param, index, p, knots) {\n        if (index < 0 || index > p) {\n            throw new Error('Index out of bounds for basis functions.');\n        }\n\n        const basis = Array(p + 1).fill(0);\n        const left = Array(p + 1).fill(0);\n        const right = Array(p + 1).fill(0);\n\n        left[0] = 1;\n        right[0] = 1;\n\n        const p1 = knots[index];\n        const p2 = knots[index + p + 1];\n\n        for (let j = 1; j <= p; j++) {\n            const leftDenom = knots[index + j] - knots[index];\n            const rightDenom = knots[index + j + 1] - knots[index + 1];\n\n            if (leftDenom !== 0) {\n                left[j] = left[j - 1] * (param - knots[index]) / leftDenom;\n            }\n            if (rightDenom !== 0) {\n                right[j] = right[j - 1] * (knots[index + j + 1] - param) / rightDenom;\n            }\n        }\n\n        for (let j = 0; j < p; j++) {\n            basis[j] = left[j] * right[j + 1] - left[j + 1] * right[j];\n        }\n\n        return basis;\n    }\n}\n```"
+    }
+  ],
+  "title": "Modify nurbsBasis.NurbsSurface",
+  "id": "20241222_230246385Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T23:02:54.311Z"
+}

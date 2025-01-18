@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunctions method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    basisFunctions(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    basisFunctions(t) {\n        const n = this.knotVector.length - this.degree - 1;\n        const result = Array(this.degree + 1).fill(0);\n        const span = this.findSpan(n, this.degree, t);\n        const localKnots = this.knotVector.slice(span - this.degree, span + 1);\n        \n        result[0] = 1;\n        for (let j = 1; j <= this.degree; j++) {\n            let saved = 0;\n            for (let r = 0; r < j; r++) {\n                const left = t - localKnots[r];\n                const right = localKnots[j] - t;\n                const temp = result[r] / (localKnots[r + 1] - localKnots[r]);\n                result[r] = saved + right * temp;\n                saved = left * temp;\n            }\n            result[j] = saved;\n        }\n        return result;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunctions.NurbsCurve",
+  "id": "20241223_005745340Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T00:57:48.152Z"
+}

@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Modify the interpolateSurfacePoint method in the NurbsSurface class.\nImprove it.\n\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    interpolateSurfacePoint(pointsA, pointsB, i, j, basisFuncA, basisFuncB) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    interpolateSurfacePoint(pointsA, pointsB, i, j, basisFuncA, basisFuncB) {\n        const pointA = pointsA[i];\n        const pointB = pointsB[j];\n        const weightA = this.weights[i] * basisFuncA;\n        const weightB = this.weights[j] * basisFuncB;\n\n        const weightedPoint = [\n            (pointA[0] * weightA + pointB[0] * weightB) / (weightA + weightB),\n            (pointA[1] * weightA + pointB[1] * weightB) / (weightA + weightB),\n            (pointA[2] * weightA + pointB[2] * weightB) / (weightA + weightB)\n        ];\n\n        return weightedPoint;\n    }\n}\n```"
+    }
+  ],
+  "title": "Modify interpolateSurfacePoint.NurbsSurface",
+  "id": "20241222_230320530Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T23:03:25.208Z"
+}

@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the setKnotVector method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    setKnotVector(knotVector) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(knotVector, controlPoints, degree, dimension) {\n        if (!Array.isArray(controlPoints) || !Array.isArray(knotVector)) {\n            throw new Error('Control points and knot vector must be arrays.');\n        }\n        this._knotVector = knotVector;\n        this._controlPoints = controlPoints;\n        this._degree = degree;\n        this._dimension = dimension;\n    }\n\n    setKnotVector(knotVector) {\n        if (!Array.isArray(knotVector)) {\n            throw new Error('Knot vector must be an array.');\n        }\n\n        const nOld = this._controlPoints.length - this._degree - 1;\n        const nNew = knotVector.length - this._degree - 1;\n\n        if (nOld !== nNew) {\n            throw new Error('The number of control points and the new knot vector must match.');\n        }\n\n        this._knotVector = knotVector;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement setKnotVector.NurbsCurve",
+  "id": "20241222_221412816Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:14:21.854Z"
+}

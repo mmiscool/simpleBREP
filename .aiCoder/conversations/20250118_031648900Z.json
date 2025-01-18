@@ -1,0 +1,58 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Are there any place holders or unimplemented portions of the classes?\nList each method as an individual numbered item in the list like this:\n##ACTION LIST\n1. className.methodName\n2. className.methodName",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "## ACTION LIST\n1.  Solid.volume\n2.  Solid.surfaceArea\n3.  Solid.getFaces\n4.  Solid.addFace\n5.  Solid.removeFace\n6.  Solid.copy\n7.  Solid._copyLoop\n8.  SurfaceTrimmer.trimSurface\n9.  SurfaceTrimmer.splitSurface\n10. SurfaceTrimmer.isPointInside\n11. SurfaceTrimmer._findUVOnSurface\n12. SurfaceTrimmer._inverse2x2\n13. SurfaceTrimmer._trimSurfaceWithUVs\n14. SurfaceTrimmer._isPointInsideTrim\n15. SurfaceTrimmer._splitSurfaceWithUVs\n16. BooleanOperation.union\n17. BooleanOperation.intersect\n18. BooleanOperation.subtract\n19. BooleanOperation.findSurfaceIntersections\n20. BooleanOperation._findSurfaceIntersections\n21. BooleanOperation._approximateIntersections\n22. BooleanOperation._refineIntersections\n23. BooleanOperation._refineIntersectionPoint\n24. BooleanOperation._calculateJacobian\n25. BooleanOperation._createUniformKnotVector\n26. BooleanOperation._createEdgesFromIntersection\n27. BooleanOperation._findOrCreateVertex\n28. BooleanOperation._createLoopsFromEdges\n29. BooleanOperation._isCoincident\n30. BooleanOperation._isTangentIntersection\n31. BooleanOperation._recursiveSubdivision\n32. BooleanOperation._isFaceInside\n33. BooleanOperation._hasSelfIntersections\n34. BooleanOperation._isCurveOnBoundary\n35. BooleanOperation._levenbergMarquardtRefinement\n36. BooleanOperation._isLoopValid\n37. BooleanOperation._doEdgesIntersect\n38. BooleanOperation._calculateJacobianForIntersection\n39. BooleanOperation._transposeMultiply\n40. BooleanOperation._augmentMatrix\n41. BooleanOperation._solveLinearSystem\n42. BooleanOperation._doLineSegmentsIntersect\n43. BooleanOperation._isSolidInside\n44. BooleanOperation._isCoplanar\n45. BooleanOperation._handleCoplanarFaces\n46. BooleanOperation._createEdgesFromPoints\n47. BooleanOperation._trimCoplanarFaces\n48. BooleanOperation._isPointInsideLoop\n49. BooleanOperation._getBoundingBox\n50. BooleanOperation._doBoundingBoxesOverlap\n51. BooleanOperation._trimSurfaceWithUVs\n52. BooleanOperation._isOuterLoop\n53. BooleanOperation._isFaceLargeEnough\n54. BooleanOperation._isFaceInsideLoop\n55. BooleanOperation._isCurveWithinBounds\n56. BooleanOperation._splitSelfIntersectingSurface\n57. BooleanOperation.isPointInside\n58. BooleanOperation._findUVOnSurface\n59. BooleanOperation._inverse2x2",
+      "hidden": false
+    },
+    {
+      "role": "user",
+      "content": "Are there any place holders or unimplemented portions of the classes?\nList each method as an individual numbered item in the list like this:\n##ACTION LIST\n1. className.methodName\n2. className.methodName",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "Okay, I will analyze the provided code and list the methods that are either placeholders, have incomplete implementations, or are not fully implemented based on the provided documentation.\n\n## ACTION LIST\n1.  Solid.volume\n2.  Solid.surfaceArea\n3.  Solid.getFaces\n4.  Solid.addFace\n5.  Solid.removeFace\n6.  Solid.copy\n7.  Solid._copyLoop\n8.  SurfaceTrimmer.trimSurface\n9.  SurfaceTrimmer.splitSurface\n10. SurfaceTrimmer.isPointInside\n11. SurfaceTrimmer._findUVOnSurface\n12. SurfaceTrimmer._inverse2x2\n13. SurfaceTrimmer._trimSurfaceWithUVs\n14. SurfaceTrimmer._isPointInsideTrim\n15. SurfaceTrimmer._splitSurfaceWithUVs\n16. BooleanOperation.union\n17. BooleanOperation.intersect\n18. BooleanOperation.subtract\n19. BooleanOperation.findSurfaceIntersections\n20. BooleanOperation._findSurfaceIntersections\n21. BooleanOperation._approximateIntersections\n22. BooleanOperation._refineIntersections\n23. BooleanOperation._refineIntersectionPoint\n24. BooleanOperation._calculateJacobian\n25. BooleanOperation._createUniformKnotVector\n26. BooleanOperation._createEdgesFromIntersection\n27. BooleanOperation._findOrCreateVertex\n28. BooleanOperation._createLoopsFromEdges\n29. BooleanOperation._isCoincident\n30. BooleanOperation._isTangentIntersection\n31. BooleanOperation._recursiveSubdivision\n32. BooleanOperation._isFaceInside\n33. BooleanOperation._hasSelfIntersections\n34. BooleanOperation._isCurveOnBoundary\n35. BooleanOperation._levenbergMarquardtRefinement\n36. BooleanOperation._isLoopValid\n37. BooleanOperation._doEdgesIntersect\n38. BooleanOperation._calculateJacobianForIntersection\n39. BooleanOperation._transposeMultiply\n40. BooleanOperation._augmentMatrix\n41. BooleanOperation._solveLinearSystem\n42. BooleanOperation._doLineSegmentsIntersect\n43. BooleanOperation._isSolidInside\n44. BooleanOperation._isCoplanar\n45. BooleanOperation._handleCoplanarFaces\n46. BooleanOperation._createEdgesFromPoints\n47. BooleanOperation._trimCoplanarFaces\n48. BooleanOperation._isPointInsideLoop\n49. BooleanOperation._getBoundingBox\n50. BooleanOperation._doBoundingBoxesOverlap\n51. BooleanOperation._trimSurfaceWithUVs\n52. BooleanOperation._isOuterLoop\n53. BooleanOperation._isFaceLargeEnough\n54. BooleanOperation._isFaceInsideLoop\n55. BooleanOperation._isCurveWithinBounds\n56. BooleanOperation._splitSelfIntersectingSurface\n57. BooleanOperation.isPointInside\n58. BooleanOperation._findUVOnSurface\n59. BooleanOperation._inverse2x2",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation Plan and Code Generation",
+  "id": "20250118_031648900Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T03:17:11.666Z"
+}

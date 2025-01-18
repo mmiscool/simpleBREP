@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the degreeElevate method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    degreeElevate() {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```\nclass NurbsCurve {\n    degreeElevate() {\n        const p = this.degree;\n        const n = this.controlPoints.length - 1;\n        const U = this.knotVector;\n        const Q = this.controlPoints;\n        const newDegree = p + 1;\n        const newKnotVector = [...U];\n        const newControlPoints = [];\n        const k = n + p + 1;\n        const m = k + p;\n        let i = n;\n        let j = m;\n        newControlPoints[j] = Q[i];\n        for (let ii = 0; ii < p + 1; ii++) {\n            newControlPoints[j - ii] = [...Q[i]];\n        }\n        let nextKnot = newKnotVector[j - p - 1]\n        for(let ii=0; ii < m - 2 * p; ii++){\n            while (newKnotVector[j-p-1] != nextKnot){\n                i = i - 1;\n                newControlPoints[j-p-1] = [...Q[i]];\n            }\n            j = j - 1;\n            if(j < (2 * p)){\n                break;\n            }\n            const alpha = (newKnotVector[j+p] - U[i]) / (newKnotVector[j + p] - newKnotVector[j - p - 1])\n            const newPoint = []\n            for (let dim = 0; dim < this.dimension; dim++) {\n              newPoint.push(alpha * newControlPoints[j+p][dim] + (1 - alpha) * newControlPoints[j-p][dim] )\n            }\n            if (this.isRational) {\n               newPoint.push(alpha * newControlPoints[j+p][this.dimension] + (1 - alpha) * newControlPoints[j-p][this.dimension] )\n           }\n            newControlPoints[j] = newPoint;\n            nextKnot = newKnotVector[j - p - 1]\n        }\n       \n        this.degree = newDegree;\n        this.controlPoints = newControlPoints.filter(Boolean);\n        this.knotVector = newKnotVector;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation",
+  "id": "20250110_103647600Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:36:53.545Z"
+}

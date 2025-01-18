@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the normal method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    normal(u, v) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```\nclass NurbsSurface {\n    constructor(controlPoints, knotsU, knotsV, weights) {\n        this.controlPoints = controlPoints;\n        this.knotsU = knotsU;\n        this.knotsV = knotsV;\n        this.weights = weights;\n    }\n\n    normal(u, v) {\n        const n = this.controlPoints.length - 1;\n        const m = this.controlPoints[0].length - 1;\n\n        let num = 0;\n        let den = 0;\n\n        for (let i = 0; i <= n; ++i) {\n            const t = (u - this.knotsU[i]) / (this.knotsU[i + n + 1] - this.knotsU[i]);\n\n            const basisN = this.basis(n, i, t);\n\n            for (let j = 0; j <= m; ++j) {\n                const s = (v - this.knotsV[j]) / (this.knotsV[j + n + 1] - this.knotsV[j]);\n\n                const basisM = this.basis(m, j, s);\n\n                const coefficient = basisN * basisM * this.weights[i * m + j];\n\n                num += (1 - t) * (1 - s) * coefficient * this.controlPoints[i][j];\n                den += (1 - t) * (1 - s) * coefficient;\n            }\n        }\n\n        const xNum = 3 * num.x - u * den;\n        const yNum = 3 * num.y - v * den;\n        const zNum = 3 * num.z - den;\n\n        return new THREE.Vector3(xNum, yNum, zNum).normalize();\n    }\n\n    basis(degree, index, t) {\n        if (index === degree || t < this.knots[index] && t >= this.knots[index + 1]) {\n            return 1;\n        }\n\n        let result = 0;\n        for (let k = 0; k <= degree; ++k) {\n            const left = this.basis(degree - k, index, t);\n            const right = this.basis(k, index - 1, t);\n            result += left * right;\n        }\n\n        return result;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement normal.NurbsSurface",
+  "id": "20241223_010233663Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:02:49.775Z"
+}

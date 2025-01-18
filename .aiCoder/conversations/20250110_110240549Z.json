@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the surfaceSurfaceIntersection method in the NurbsIntersection class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsIntersection {\n    surfaceSurfaceIntersection(surfaceA, surfaceB, tolerance) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsIntersection {\n    surfaceSurfaceIntersection(surfaceA, surfaceB, tolerance) {\n        if (!surfaceA || !surfaceB || typeof tolerance !== 'number' || tolerance <= 0) {\n            return [];\n        }\n        const uDivisions = 10;\n        const vDivisions = 10;\n        const intersections = [];\n        for (let i = 0; i < uDivisions; i++) {\n            for (let j = 0; j < vDivisions; j++) {\n                const u0 = i / uDivisions;\n                const v0 = j / vDivisions;\n                const u1 = (i + 1) / uDivisions;\n                const v1 = (j + 1) / vDivisions;\n                const p00 = surfaceA.evaluate(u0, v0);\n                const p01 = surfaceA.evaluate(u0, v1);\n                const p10 = surfaceA.evaluate(u1, v0);\n                const p11 = surfaceA.evaluate(u1, v1);\n                if (!p00 || !p01 || !p10 || !p11) {\n                    continue;\n                }\n                const q00 = surfaceB.projectPoint(p00);\n                const q01 = surfaceB.projectPoint(p01);\n                const q10 = surfaceB.projectPoint(p10);\n                const q11 = surfaceB.projectPoint(p11);\n                if (!q00 || !q01 || !q10 || !q11) {\n                     continue;\n                }\n                const q00Surface = surfaceB.pointAt(q00.u, q00.v);\n                const q01Surface = surfaceB.pointAt(q01.u, q01.v);\n                const q10Surface = surfaceB.pointAt(q10.u, q10.v);\n                const q11Surface = surfaceB.pointAt(q11.u, q11.v);\n                const dist00 = Math.sqrt(Math.pow(p00[0] - q00Surface[0], 2) + Math.pow(p00[1] - q00Surface[1], 2) + Math.pow(p00[2] - q00Surface[2], 2));\n                const dist01 = Math.sqrt(Math.pow(p01[0] - q01Surface[0], 2) + Math.pow(p01[1] - q01Surface[1], 2) + Math.pow(p01[2] - q01Surface[2], 2));\n                const dist10 = Math.sqrt(Math.pow(p10[0] - q10Surface[0], 2) + Math.pow(p10[1] - q10Surface[1], 2) + Math.pow(p10[2] - q10Surface[2], 2));\n                const dist11 = Math.sqrt(Math.pow(p11[0] - q11Surface[0], 2) + Math.pow(p11[1] - q11Surface[1], 2) + Math.pow(p11[2] - q11Surface[2], 2));\n                if (dist00 < tolerance && dist01 < tolerance && dist10 < tolerance && dist11 < tolerance) {\n                     const midU = (u0+u1)/2;\n                     const midV = (v0+v1)/2;\n                     const midPointA = surfaceA.evaluate(midU,midV);\n                     if(midPointA){\n                        intersections.push(midPointA);\n                     }\n                } else if (dist00 * dist01 < 0 || dist00 * dist10 < 0 || dist00 * dist11 < 0 || dist01 * dist10 < 0 || dist01 * dist11 < 0 || dist10 * dist11 < 0 || dist00 < tolerance || dist01 < tolerance || dist10 < tolerance || dist11 < tolerance) {\n                    let lowU = u0;\n                    let highU = u1;\n                    let lowV = v0;\n                    let highV = v1;\n                    for (let k = 0; k < 10; k++) {\n                        const midU = (lowU + highU) / 2;\n                        const midV = (lowV + highV) / 2;\n                        const midPointA = surfaceA.evaluate(midU, midV);\n                         if (!midPointA) {\n                            continue;\n                        }\n                        const midPointB = surfaceB.projectPoint(midPointA);\n                        if (!midPointB) {\n                             continue;\n                        }\n                        const midPointBSurface = surfaceB.pointAt(midPointB.u, midPointB.v);\n                        const distMid = Math.sqrt(Math.pow(midPointA[0] - midPointBSurface[0], 2) + Math.pow(midPointA[1] - midPointBSurface[1], 2) + Math.pow(midPointA[2] - midPointBSurface[2], 2));\n                        if (distMid < tolerance) {\n                            intersections.push(midPointA);\n                            break;\n                        } else if(dist00 * distMid < 0){\n                             highU = midU;\n                             highV = midV;\n                        } else {\n                            lowU = midU;\n                            lowV = midV;\n                        }\n                    }\n                }\n            }\n        }\n        return intersections;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Implementing Surface-Surface Intersection for a 3D Modeling Library",
+  "id": "20250110_110240549Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T11:02:54.455Z"
+}

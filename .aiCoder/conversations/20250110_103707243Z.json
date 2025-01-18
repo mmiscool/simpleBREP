@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the split method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    split(u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    split(u) {\n        if (u < this.knotVector[0] || u > this.knotVector[this.knotVector.length - 1]) {\n            throw new Error('Parameter u is out of range of the knot vector.');\n        }\n\n        const n = this.controlPoints.length - 1;\n        const p = this.degree;\n        const U = this.knotVector;\n        let span = this.findSpan(n, p, u, U);\n        if (span === -1)\n            return null;\n\n        const newKnotVector = [...U];\n        const newControlPoints = [...this.controlPoints];\n\n        const multiplicity = this.knotMultiplicity(u);\n        const numInsertions = p + 1 - multiplicity;\n\n\n        for (let i = 0; i < numInsertions; i++) {\n            newKnotVector.splice(span + 1, 0, u);\n\n\n            const alpha = new Array(p + 1).fill(0);\n            for (let j = 1; j <= p; j++) {\n                alpha[j] = (u - U[span + 1 - j]) / (U[span + j] - U[span + 1 - j]);\n            }\n\n            for (let j = 1; j <= p; j++) {\n                  const newControlPoint = [];\n                  for (let k = 0; k < this.dimension; k++){\n                      newControlPoint.push(alpha[j] * newControlPoints[span - p + j][k] + (1 - alpha[j]) * newControlPoints[span - p + j - 1][k]);\n                  }\n                  if(this.isRational){\n                       newControlPoint.push(alpha[j] * newControlPoints[span - p + j][this.dimension] + (1 - alpha[j]) * newControlPoints[span - p + j - 1][this.dimension]);\n                  }\n                newControlPoints[span - p + j] = newControlPoint;\n            }\n           span++;\n        }\n\n\n       const curve1ControlPoints = newControlPoints.slice(0, span - p);\n       const curve2ControlPoints = newControlPoints.slice(span - p);\n\n        const curve1KnotVector = newKnotVector.slice(0, span + 1);\n        const curve2KnotVector = newKnotVector.slice(span - p);\n      \n       return [new NurbsCurve(curve1KnotVector, curve1ControlPoints, p, this.dimension, this.isRational),\n                new NurbsCurve(curve2KnotVector, curve2ControlPoints, p, this.dimension, this.isRational)];\n\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation",
+  "id": "20250110_103707243Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:37:12.973Z"
+}

@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the calculateIntersection method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    calculateIntersection(curveB) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    calculateIntersection(curveB) {\n        const intersections = [];\n        const resolution = 100;\n        for (let i = 0; i <= resolution; i++) {\n            const tA = i / resolution;\n            const pointA = this.evaluate(tA);\n\n            for (let j = 0; j <= resolution; j++) {\n                const tB = j / resolution;\n                const pointB = curveB.evaluate(tB);\n\n                const distance = Math.sqrt(pointA.reduce((sum, coord, index) => sum + Math.pow(coord - pointB[index], 2), 0));\n                if (distance < 1e-6) { // Threshold for intersection\n                    intersections.push({ tA, tB, point: pointA });\n                }\n            }\n        }\n        return intersections;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement calculateIntersection.NurbsCurve",
+  "id": "20241223_010026874Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:00:29.189Z"
+}

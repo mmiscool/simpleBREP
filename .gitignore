@@ -1,3 +1,6 @@
 node_modules
 *aiCoder/*key*
 *aiCoder/backups/*
+
+*aiCoder/llm*/*key*
+

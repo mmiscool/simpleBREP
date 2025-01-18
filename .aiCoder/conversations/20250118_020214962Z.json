@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the _isLoopValid method in the BooleanOperation class.\nRemember to respond with a snippet in the form of the following:\n```\nclass BooleanOperation {\n    _isLoopValid(loop) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass BooleanOperation {\n    _isLoopValid(loop) {\n        if (!loop || loop.getEdges().length < 2) {\n            return false;\n        }\n\n        const edges = loop.getEdges();\n        for (let i = 0; i < edges.length; i++) {\n            const edge1 = edges[i];\n            for (let j = i + 1; j < edges.length; j++) {\n                 const edge2 = edges[j];\n                 if(this._doEdgesIntersect(edge1, edge2)) return false;\n            }\n         }\n\n        const startVertex = edges[0].getStartVertex();\n        const endVertex = edges[edges.length - 1].getEndVertex();\n         if(startVertex !== endVertex) return false;\n\n        return true;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Development in JavaScript",
+  "id": "20250118_020214962Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T02:02:18.694Z"
+}

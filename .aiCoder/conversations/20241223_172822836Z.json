@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/plan-edit-prompt.md",
+      "filePath": "./.aiCoder/prompts/plan-edit-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "Plan to be edited:"
+    },
+    {
+      "role": "user",
+      "content": "I am writing a NURBS library from scratch. Create a list of classes and methods along with arguments about the functionality required. \n\n"
+    },
+    {
+      "role": "assistant",
+      "content": "# Enhanced NURBS Library Development Plan for JavaScript\n\nThis section outlines the classes and methods required for implementing an enhanced NURBS library in JavaScript, focusing on curve and surface evaluations, as well as intersection operations between NURBS curves and surfaces. Additionally, it includes functionality for transformations (translation, rotation, scaling) and other utility functions.\n\n## Classes\n1. **NurbsCurve**\n   - Represents a NURBS curve with properties for knot vector, control points, degree, and dimension.\n   - Methods:\n      1. `constructor(knotVector, controlPoints, degree, dimension)`\n         - Input Arguments:\n           - knotVector (Array): Array of knots defining the parametric space of the curve.\n           - controlPoints (Array): Array of control points defining the shape of the curve.\n           - degree (Number): Degree of the NURBS basis functions.\n           - dimension (Number): Dimension of the control points array (2 for 2D curves, 3 for 3D curves).\n         - Description: Initializes a new instance of the NurbsCurve class.\n      2. `evaluate(t)`\n         - Input Argument:\n           - t (Number): Evaluation parameter within [0, 1].\n         - Return Object: Array containing the coordinates of the evaluated point.\n         - Description: Evaluates the curve at a given parameter value using De Boor's algorithm or similar.\n      3. `getControlPoints()` -> Array\n          - Description: Returns the control points array.\n      4. `transform(matrix)`\n         - Input Argument:\n           - matrix (Array): A 4x4 transformation matrix for translation, rotation, and scaling.\n         - Description: Applies a given transformation matrix to the NURBS curve's control points.\n2. **NurbsSurface**\n   - Represents a NURBS surface with properties for u and v knot vectors, control points arrays, u-degree, and v-degree.\n   - Methods:\n      1. `constructor(uKnotVector, vKnotVector, controlPointsU, controlPointsV, uDegree, vDegree)`\n         - Input Arguments:\n           - uKnotVector (Array): Array of knots for the u-direction defining the parametric space of the surface.\n           - vKnotVector (Array): Array of knots for the v-direction.\n           - controlPointsU (Array): 2D array of control points for the u-direction.\n           - controlPointsV (Array): 2D array of control points for the v-direction.\n           - uDegree (Number): Degree of the NURBS basis functions in the u-direction.\n           - vDegree (Number): Degree of the NURBS basis functions in the v-direction.\n         - Description: Initializes a new instance of the NurbsSurface class.\n      2. `evaluate(u, v)`\n         - Input Arguments:\n           - u (Number): Evaluation parameter for the u-direction within [0, 1].\n           - v (Number): Evaluation parameter for the v-direction within [0, 1].\n         - Return Object: Array containing the coordinates of the evaluated point.\n         - Description: Evaluates the surface at given parameters using a product Bézier formulation or similar.\n      3. `getControlPointsU()` -> Array\n          - Description: Returns the control points array for the u-direction.\n      4. `getControlPointsV()` -> Array\n          - Description: Returns the control points array for the v-direction.\n      5. `transform(matrix)`\n         - Input Argument:\n           - matrix (Array): A 4x4 transformation matrix for translation, rotation, and scaling.\n         - Description: Applies a given transformation matrix to the NURBS surface's control points.\n3. **Intersection**\n   - Represents an intersection object containing information about the intersection point, curve/surface indices, and parameters.\n   - Methods:\n      1. `constructor(curveIndexA, curveIndexB, surfaceIndexA, surfaceIndexB, uParam, vParam)`\n         - Input Arguments:\n           - curveIndexA (Number): Index of Curve A in the intersection operation.\n           - curveIndexB (Number): Index of Curve B in the intersection operation.\n           - surfaceIndexA (Number | null): Index of Surface A in the intersection operation (null if no surface involved).\n           - surfaceIndexB (Number | null): Index of Surface B in the intersection operation (null if no surface involved)."
+    }
+  ],
+  "title": "Plan Chat",
+  "id": "20241223_172822836Z",
+  "targetFile": null,
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:29:56.956Z"
+}

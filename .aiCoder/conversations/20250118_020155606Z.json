@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the _levenbergMarquardtRefinement method in the BooleanOperation class.\nRemember to respond with a snippet in the form of the following:\n```\nclass BooleanOperation {\n    _levenbergMarquardtRefinement(surface1, surface2, initialPoint, tolerance, maxIterations) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass BooleanOperation {\n    _levenbergMarquardtRefinement(surface1, surface2, initialPoint, tolerance, maxIterations) {\n        let u1 = initialPoint.u1;\n        let v1 = initialPoint.v1;\n        let u2 = initialPoint.u2;\n        let v2 = initialPoint.v2;\n        let lambda = 0.01;\n        const dampingFactor = 10;\n        for (let i = 0; i < maxIterations; i++) {\n            const p1 = surface1.evaluate(u1, v1);\n            const p2 = surface2.evaluate(u2, v2);\n            if (!p1 || !p2) {\n                return null;\n            }\n            const diff = new Vector3D(p2.getX() - p1.getX(), p2.getY() - p1.getY(), p2.getZ() - p1.getZ());\n            if (diff.magnitude() < tolerance) {\n                return {\n                    u1: u1,\n                    v1: v1,\n                    u2: u2,\n                    v2: v2\n                };\n            }\n            const jacobian = this._calculateJacobianForIntersection(surface1, surface2, u1, v1, u2, v2);\n            if (!jacobian) {\n                return null;\n            }\n             const JtJ = this._transposeMultiply(jacobian, jacobian)\n             const JtDiff = this._transposeMultiply(jacobian, [[diff.getX()], [diff.getY()], [diff.getZ()]])\n            if (!JtJ || !JtDiff) {\n               return null;\n            }\n\n            const augmentedJtJ = this._augmentMatrix(JtJ, lambda);\n            const delta = this._solveLinearSystem(augmentedJtJ, JtDiff);\n\n            if (!delta) {\n                lambda *= dampingFactor;\n                continue;\n            }\n\n            u1 -= delta[0][0];\n            v1 -= delta[1][0];\n            u2 -= delta[2][0];\n            v2 -= delta[3][0];\n\n\n            const uMin1 = surface1.getKnotsU()[0];\n            const uMax1 = surface1.getKnotsU()[surface1.getKnotsU().length - 1];\n            const vMin1 = surface1.getKnotsV()[0];\n            const vMax1 = surface1.getKnotsV()[surface1.getKnotsV().length - 1];\n            const uMin2 = surface2.getKnotsU()[0];\n            const uMax2 = surface2.getKnotsU()[surface2.getKnotsU().length - 1];\n            const vMin2 = surface2.getKnotsV()[0];\n            const vMax2 = surface2.getKnotsV()[surface2.getKnotsV().length - 1];\n\n\n            u1 = Math.max(uMin1, Math.min(u1, uMax1));\n            v1 = Math.max(vMin1, Math.min(v1, vMax1));\n            u2 = Math.max(uMin2, Math.min(u2, uMax2));\n            v2 = Math.max(vMin2, Math.min(v2, vMax2));\n\n            if(isNaN(u1) || isNaN(v1) || isNaN(u2) || isNaN(v2)) {\n                return null\n            }\n\n            if(delta[0][0] === 0 && delta[1][0] === 0 && delta[2][0] === 0 && delta[3][0] === 0){\n                lambda *= 0.1;\n            }\n            else\n            {\n                 lambda *= 0.1;\n            }\n\n\n           if(lambda < 1e-10)\n            {\n                lambda = 1e-10;\n            }\n        }\n        return null;\n    }\n     _calculateJacobianForIntersection(surface1, surface2, u1, v1, u2, v2) {\n        const du1 = surface1.evaluatePartialDerivative(u1, v1, 1, 0);\n        const dv1 = surface1.evaluatePartialDerivative(u1, v1, 0, 1);\n        const du2 = surface2.evaluatePartialDerivative(u2, v2, 1, 0);\n        const dv2 = surface2.evaluatePartialDerivative(u2, v2, 0, 1);\n        if (!du1 || !dv1 || !du2 || !dv2) {\n            return null;\n        }\n        return [\n            [du1.getX(), du1.getY(), du1.getZ(), 0, 0, 0],\n            [dv1.getX(), dv1.getY(), dv1.getZ(), 0, 0, 0],\n            [0, 0, 0, -du2.getX(), -du2.getY(), -du2.getZ()],\n            [0, 0, 0, -dv2.getX(), -dv2.getY(), -dv2.getZ()]\n        ];\n    }\n    _transposeMultiply(matrixA, matrixB) {\n        if (!matrixA || !matrixB || matrixA[0].length !== matrixB.length )\n        {\n            return null\n        }\n\n         const rowsA = matrixA.length;\n        const colsA = matrixA[0].length;\n         const colsB = matrixB[0].length;\n        const result = Array(colsA).fill(null).map(() => Array(colsB).fill(0));\n\n         for (let i = 0; i < colsA; i++) {\n            for (let j = 0; j < colsB; j++) {\n                for (let k = 0; k < rowsA; k++) {\n                    result[i][j] += matrixA[k][i] * matrixB[k][j];\n                }\n            }\n        }\n    return result;\n    }\n\n     _augmentMatrix(matrix, lambda) {\n        if(!matrix)\n        {\n            return null;\n        }\n\n        const rows = matrix.length;\n        const cols = matrix[0].length;\n          if (rows !== cols) {\n            return null;\n        }\n\n        const result = matrix.map(row => [...row]);\n           for (let i = 0; i < rows; i++) {\n            result[i][i] += lambda;\n        }\n\n        return result;\n    }\n\n    _solveLinearSystem(matrixA, matrixB) {\n         if (!matrixA || !matrixB || matrixA.length !== matrixA[0].length || matrixA.length !== matrixB.length)\n        {\n           return null\n        }\n        const n = matrixA.length;\n        const augmentedMatrix = matrixA.map((row, i) => [...row, ...matrixB[i]])\n        for (let i = 0; i < n; i++) {\n            let pivotRow = i;\n            for (let j = i + 1; j < n; j++) {\n                if (Math.abs(augmentedMatrix[j][i]) > Math.abs(augmentedMatrix[pivotRow][i])) {\n                    pivotRow = j;\n                }\n            }\n            if (pivotRow !== i) {\n                [augmentedMatrix[i], augmentedMatrix[pivotRow]] = [augmentedMatrix[pivotRow], augmentedMatrix[i]];\n            }\n            if (augmentedMatrix[i][i] === 0) {\n                return null;\n            }\n\n            for (let j = 0; j < n; j++) {\n                if (j !== i) {\n                    const factor = augmentedMatrix[j][i] / augmentedMatrix[i][i];\n                    for (let k = i; k < n + matrixB[0].length; k++) {\n                       augmentedMatrix[j][k] -= factor * augmentedMatrix[i][k];\n                    }\n                }\n            }\n        }\n         const result = matrixB.map((row, i) => []);\n        for (let i = 0; i < n; i++) {\n            for(let j = n; j < n+ matrixB[0].length; j++){\n              result[i].push(augmentedMatrix[i][j] / augmentedMatrix[i][i])\n             }\n        }\n        return result;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation Plan and Code",
+  "id": "20250118_020155606Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T02:02:11.103Z"
+}

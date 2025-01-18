@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Are there any place holders or unimplemented portions of the classes?\nList each method as an individual numbered item in the list like this:\n##ACTION LIST\n1. className.methodName Detailed description of the problem that needs to be addressd \n2. className.methodName Detailed description of the problem that needs to be addressd \n\nAlso remember than when a specific method is selected to be worked on to follow the rules about code snippets and omit methods that are not being changed.",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "##ACTION LIST\n1.  NurbsCurve.insertKnot The logic for inserting a knot needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n2.  NurbsCurve.removeKnot The logic for removing a knot needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n3.  NurbsSurface.insertKnotU The logic for inserting a knot in the U direction needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n4.  NurbsSurface.insertKnotV The logic for inserting a knot in the V direction needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n5.  NurbsSurface.removeKnotU The logic for removing a knot in the U direction needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n6.  NurbsSurface.removeKnotV The logic for removing a knot in the V direction needs to be reviewed and potentially corrected as the implementation might not be fully correct for all cases.\n7.  SurfaceTrimmer.trimSurface The trimming logic is not fully implemented and just removes control points close to the trimming boundary, this needs to be implemented correctly\n8.  SurfaceTrimmer._trimSurfaceWithUVs The method is not fully implemented and just removes control points close to the trimming boundary, this needs to be implemented correctly\n9.  SurfaceTrimmer.splitSurface The splitting logic is not fully implemented and just removes control points close to the splitting boundary, this needs to be implemented correctly\n10. SurfaceTrimmer._splitSurfaceWithUVs The method is not fully implemented and just removes control points close to the splitting boundary, this needs to be implemented correctly.\n11. BooleanOperation.union The boolean union operation needs to be implemented correctly accounting for coplanar faces and edge cases\n12. BooleanOperation.intersect The boolean intersection operation needs to be implemented correctly accounting for coplanar faces and edge cases\n13. BooleanOperation.subtract The boolean subtraction operation needs to be implemented correctly accounting for coplanar faces and edge cases\n14. BooleanOperation._createEdgesFromIntersection The creation of edges from intersection curves is incomplete and may produce invalid edges\n15. BooleanOperation._createLoopsFromEdges The creation of loops from edges is incomplete and may produce invalid loops\n16. BooleanOperation._refineIntersections The method is incomplete and may produce invalid intersection curves\n17. BooleanOperation._levenbergMarquardtRefinement The method may need further refining to converge correctly\n18. BooleanOperation._recursiveSubdivision The recursive subdivision method may need to be reviewed and improved for accuracy\n19. BooleanOperation._doEdgesIntersect The implementation might be incomplete and not account for edge cases\n20. BooleanOperation._handleCoplanarFaces The coplanar face handling logic might be incomplete\n21. BooleanOperation._trimCoplanarFaces The trimming logic for coplanar faces may not be correct\n22. BooleanOperation._isPointInsideLoop The point inside loop function might be incomplete\n23. BooleanOperation._createEdgesFromPoints The method does not create valid edges\n24. Solid.volume The volume calculation is approximated using tetrahedrons and may not be accurate\n25. Solid.surfaceArea The surface area calculation is approximated using triangles and may not be accurate\n26. BooleanOperation._isFaceInsideLoop The function might be incomplete",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation Plan and Action Items",
+  "id": "20250118_031825081Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T03:18:42.633Z"
+}

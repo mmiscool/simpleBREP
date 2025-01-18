@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the calculateBasisMatrix method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    calculateBasisMatrix(weights) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n  calculateBasisMatrix(weights) {\n    const n = weights.length;\n    const basisMatrix = new Float32Array(n * 4);\n\n    for (let i = 0; i < n; ++i) {\n      basisMatrix[4 * i] = 1 - weights[i];\n      basisMatrix[4 * i + 1] = weights[i];\n      basisMatrix[4 * i + 2] = 0;\n      basisMatrix[4 * i + 3] = 0;\n    }\n\n    return basisMatrix;\n  }\n}\n```"
+    }
+  ],
+  "title": "Implement calculateBasisMatrix.NurbsCurve",
+  "id": "20241223_050627317Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T05:06:29.113Z"
+}

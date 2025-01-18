@@ -1,0 +1,58 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Create the classes and stub methods for each class outlined in the plan. ",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Point3D {\n    constructor(x, y, z) {\n        this.x = x;\n        this.y = y;\n        this.z = z;\n    }\n\n    getX() {\n        return this.x;\n    }\n\n    getY() {\n        return this.y;\n    }\n\n    getZ() {\n        return this.z;\n    }\n\n    setX(x) {\n        this.x = x;\n    }\n\n    setY(y) {\n        this.y = y;\n    }\n\n    setZ(z) {\n        this.z = z;\n    }\n\n    toArray() {\n        return [this.x, this.y, this.z];\n    }\n    distanceTo(otherPoint){\n\n    }\n    translate(vector){\n\n    }\n    add(vector){\n\n    }\n    sub(vector){\n\n    }\n}\n\nclass Vector3D {\n    constructor(x, y, z) {\n        this.x = x;\n        this.y = y;\n        this.z = z;\n    }\n\n    getX() {\n        return this.x;\n    }\n\n    getY() {\n        return this.y;\n    }\n\n    getZ() {\n        return this.z;\n    }\n\n    setX(x) {\n        this.x = x;\n    }\n\n    setY(y) {\n        this.y = y;\n    }\n\n    setZ(z) {\n        this.z = z;\n    }\n\n    toArray() {\n        return [this.x, this.y, this.z];\n    }\n    magnitude(){\n\n    }\n    normalize(){\n\n    }\n    dot(otherVector){\n\n    }\n    cross(otherVector){\n\n    }\n    add(otherVector){\n\n    }\n    sub(otherVector){\n\n    }\n    scale(scalar){\n        \n    }\n}\n\nclass NurbsCurve {\n    constructor(degree, controlPoints, knots, weights) {\n        this.degree = degree;\n        this.controlPoints = controlPoints;\n        this.knots = knots;\n        this.weights = weights;\n    }\n\n    getDegree() {\n        return this.degree;\n    }\n\n    getControlPoints() {\n        return this.controlPoints;\n    }\n\n    getKnots() {\n        return this.knots;\n    }\n\n    getWeights() {\n        return this.weights;\n    }\n\n    evaluate(u) {\n\n    }\n    evaluateDerivative(u, order){\n\n    }\n    length(){\n\n    }\n    tangeant(u){\n\n    }\n    insertKnot(u, multiplicity){\n\n    }\n    removeKnot(u, multiplicity){\n\n    }\n    splitCurve(u){\n\n    }\n    reverse(){\n\n    }\n}\n\n\nclass NurbsSurface {\n    constructor(degreeU, degreeV, controlPoints, knotsU, knotsV, weights) {\n        this.degreeU = degreeU;\n        this.degreeV = degreeV;\n        this.controlPoints = controlPoints;\n        this.knotsU = knotsU;\n        this.knotsV = knotsV;\n        this.weights = weights;\n    }\n\n    getDegreeU() {\n        return this.degreeU;\n    }\n\n    getDegreeV() {\n        return this.degreeV;\n    }\n\n    getControlPoints() {\n        return this.controlPoints;\n    }\n\n    getKnotsU() {\n        return this.knotsU;\n    }\n\n    getKnotsV() {\n        return this.knotsV;\n    }\n\n    getWeights() {\n        return this.weights;\n    }\n\n    evaluate(u, v) {\n\n    }\n    evaluatePartialDerivative(u, v, orderU, orderV){\n\n    }\n    normal(u,v){\n\n    }\n    insertKnotU(u, multiplicity){\n\n    }\n    insertKnotV(v, multiplicity){\n\n    }\n    removeKnotU(u, multiplicity){\n\n    }\n    removeKnotV(v, multiplicity){\n\n    }\n    splitSurfaceU(u){\n\n    }\n    splitSurfaceV(v){\n        \n    }\n}\n\nclass Utils {\n    basisFunction(i, degree, u, knots) {\n\n    }\n    basisFunctionDerivative(i, degree, u, knots, order){\n\n    }\n    deBoor(degree, controlPoints, knots, weights, u) {\n\n    }\n    deBoorDerivative(degree, controlPoints, knots, weights, u, order){\n\n    }\n    findSpan(n, degree, u, knots){\n\n    }\n}\nexport { Point3D, Vector3D, NurbsCurve, NurbsSurface, Utils };\n```",
+      "hidden": false
+    },
+    {
+      "role": "user",
+      "content": "Do the same thing for the BREP kernel portion. ",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Vertex {\n    constructor(point) {\n        this.point = point;\n    }\n\n    getPoint() {\n        return this.point;\n    }\n    setPoint(point){\n        this.point = point;\n    }\n}\n\nclass Edge {\n    constructor(startVertex, endVertex, curve) {\n        this.startVertex = startVertex;\n        this.endVertex = endVertex;\n        this.curve = curve;\n    }\n\n    getStartVertex() {\n        return this.startVertex;\n    }\n\n    getEndVertex() {\n        return this.endVertex;\n    }\n\n    getCurve() {\n        return this.curve;\n    }\n    setCurve(curve){\n        this.curve = curve;\n    }\n    setStartVertex(startVertex){\n        this.startVertex = startVertex\n    }\n    setEndVertex(endVertex){\n        this.endVertex = endVertex\n    }\n    reverse(){\n\n    }\n    length(){\n        \n    }\n}\n\nclass Face {\n    constructor(surface, outerLoop, innerLoops = []) {\n        this.surface = surface;\n        this.outerLoop = outerLoop;\n        this.innerLoops = innerLoops;\n    }\n\n    getSurface() {\n        return this.surface;\n    }\n\n    getOuterLoop() {\n        return this.outerLoop;\n    }\n\n    getInnerLoops() {\n        return this.innerLoops;\n    }\n    setSurface(surface){\n        this.surface = surface\n    }\n    addInnerLoop(loop){\n         this.innerLoops.push(loop);\n    }\n    removeInnerLoop(loop){\n        this.innerLoops = this.innerLoops.filter(l => l !== loop)\n   }\n}\n\nclass Loop {\n    constructor(edges) {\n        this.edges = edges;\n    }\n\n    getEdges() {\n        return this.edges;\n    }\n    addEdge(edge){\n        this.edges.push(edge)\n    }\n    removeEdge(edge){\n       this.edges = this.edges.filter(e => e!== edge)\n    }\n    isClosed(){\n    }\n}\n\n\nclass Shell {\n    constructor(faces) {\n        this.faces = faces;\n    }\n\n    getFaces() {\n        return this.faces;\n    }\n    addFace(face){\n        this.faces.push(face)\n    }\n    removeFace(face){\n       this.faces = this.faces.filter(f => f !== face)\n    }\n}\n\n\nclass Solid {\n    constructor(shells) {\n        this.shells = shells;\n    }\n\n    getShells() {\n        return this.shells;\n    }\n    addShell(shell){\n         this.shells.push(shell)\n    }\n     removeShell(shell){\n       this.shells = this.shells.filter(s => s !== shell)\n    }\n    volume(){\n\n    }\n    surfaceArea(){\n        \n    }\n}\n\nexport { Vertex, Edge, Face, Loop, Shell, Solid };\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Class and Method Stubs",
+  "id": "20250116_074318492Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-16T07:45:14.671Z"
+}

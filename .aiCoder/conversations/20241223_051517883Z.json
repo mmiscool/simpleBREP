@@ -1,0 +1,65 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the getControlPointsV method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    getControlPointsV() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n  constructor(points, knots) {\n    this.points = points;\n    this.knots = knots;\n  }\n\n  getControlPointsV() {\n    const m = this.points.length - 1; // total number of control points excluding endpoints\n    const p0 = this.knots[0];\n    const pd0 = this.knots[m + 1];\n\n    const q0 = this.knots[1];\n    const qd0 = this.knots[m + 2];\n\n    return [\n      ...this.points.map((p, i) => {\n        const j = m - i;\n        return { x: p.x, y: p.y, z: p.z };\n      }),\n\n      [...Array(m).fill(p0), { x: q0 },\n      ...this.points.slice(-1), { x: qd0 }\n    ];\n  }\n}\n```"
+    },
+    {
+      "role": "user",
+      "content": "The last snippet was formatted incorrectly and needs to be corrected. \n                Remember that methods must be encapsulated in a class."
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n  constructor(points, knots) {\n    this.points = points;\n    this.knots = knots;\n  }\n\n  getControlPointsV() {\n    const m = this.points.length - 1; // total number of control points excluding endpoints\n    const p0 = this.knots[0];\n    const pd0 = this.knots[m + 1];\n\n    const q0 = this.knots[1];\n    const qd0 = this.knots[m + 2];\n\n    return [\n      ...this.points.map((p, i) => {\n        const j = m - i;\n        return { x: p.x, y: p.y, z: p.z };\n      }),\n\n      [...Array(m).fill(p0), { x: q0 },\n      ...this.points.slice(-1), { x: qd0 }\n    ];\n  }\n}\n```"
+    },
+    {
+      "role": "user",
+      "content": "The last snippet was formatted incorrectly and needs to be corrected. \n                Remember that methods must be encapsulated in a class."
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n  constructor(points, knots) {\n    this.points = points;\n    this.knots = knots;\n  }\n\n  getControlPointsV() {\n    const m = this.points.length - 1; // total number of control points excluding endpoints\n    const p0 = this.knots[0];\n    const pd0 = this.knots[m + 1];\n\n    const q0 = this.knots[1];\n    const qd0 = this.knots[m + 2];\n\n    return [\n      ...this.points.map((p, i) => {\n        const j = m - i;\n        return { x: p.x, y: p.y, z: p.z };\n      }),\n\n      [...Array(m).fill(p0), { x: q0 },\n      ...this.points.slice(-1), { x: qd0 }\n    ];\n  }\n}\n```"
+    },
+    {
+      "role": "user",
+      "content": "The last snippet was formatted incorrectly and needs to be corrected. \n                Remember that methods must be encapsulated in a class."
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n  constructor(points, knots) {\n    this.points = points;\n    this.knots = knots;\n  }\n\n  getControlPointsV() {\n    const m = this.points.length - 1; // total number of control points excluding endpoints\n    const p0 = this.knots[0];\n    const pd0 = this.knots[m + 1];\n\n    const q0 = this.knots[1];\n    const qd0 = this.knots[m + 2];\n\n    return [\n      ...this.points.map((p, i) => {\n        const j = m - i;\n        return { x: p.x, y: p.y, z: p.z };\n      }),\n\n      [...Array(m).fill(p0), { x: q0 },\n      ...this.points.slice(-1), { x: qd0 }\n    ];\n  }\n}\n```"
+    }
+  ],
+  "title": "Implement getControlPointsV.NurbsSurface",
+  "id": "20241223_051517883Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T05:16:05.347Z"
+}

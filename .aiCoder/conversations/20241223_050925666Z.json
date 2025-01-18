@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the findSpan method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    findSpan(n, p, t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here is the `findSpan` method for the `NurbsCurve` class:\n\n```javascript\nclass NurbsCurve {\n    findSpan(n, p, t) {\n        let span = n - 1; // number of spans in u direction\n        if (span > this.knots.length - t) {\n            throw new Error(\"T cannot be greater than the maximum U parameter value\");\n        }\n        for (let i = 0; i < span; i++) {\n            let startIndex = Math.max(0, this.knots.length - t + i);\n            if (i < span - 1 && this.knots[startIndex] > n || i == span - 1 && this.knots[this.knots.length - 1] <= n) {\n                return startIndex; // u parameter value at which the curve changes direction\n            }\n        }\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement findSpan.NurbsCurve",
+  "id": "20241223_050925666Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T05:09:30.761Z"
+}

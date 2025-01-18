@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the _basisFunction method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    _basisFunction(knots, i, u) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    _basisFunction(knots, degree, i, u) {\n        if (i < 0 || i >= knots.length - degree - 1) return 0;\n\n        let result = 1;\n        let activeKnotSpan = i + degree + 1;\n\n        for (let j = 0; j <= degree; j++) {\n            if (u - knots[i + j] < 0 || u - knots[i + j + 1] >= 1) {\n                return 0;\n            }\n\n            result *= (u - knots[i + j]) / (knots[i + j + activeKnotSpan] - knots[i + j]);\n            activeKnotSpan--;\n        }\n\n        return result;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement _basisFunction.NurbsSurface",
+  "id": "20241222_222815812Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:28:21.038Z"
+}

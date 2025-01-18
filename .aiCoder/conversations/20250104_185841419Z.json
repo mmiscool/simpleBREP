@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the subdivideCurves method in the Intersection class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Intersection {\n    subdivideCurves(curveA, curveB, paramA, paramB) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Intersection {\n    // ... other methods\n\n    subdivideCurves(curveA, curveB, paramA, paramB) {\n        const [curveA1, curveA2] = curveA.split(paramA);\n        const [curveB1, curveB2] = curveB.split(paramB);\n        return [[curveA1, curveB1], [curveA1, curveB2], [curveA2, curveB1], [curveA2, curveB2]];\n    }\n    // ... other methods\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Developing a NURBS library in JavaScript",
+  "id": "20250104_185841419Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T18:58:43.780Z"
+}

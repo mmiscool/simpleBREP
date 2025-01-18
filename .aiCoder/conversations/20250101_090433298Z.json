@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Generate the classes and stub methods required to implement the plan. "
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(knotVector, controlPoints, degree, dimension) {\n        this.knotVector = knotVector;\n        this.controlPoints = controlPoints;\n        this.degree = degree;\n        this.dimension = dimension;\n    }\n\n    evaluate(t) {\n      \n    }\n\n    evaluateRational(t){\n      \n    }\n    getControlPoints() {\n        \n    }\n    transform(matrix) {\n       \n    }\n    homogenize(){\n       \n    }\n    dehomogenize(){\n        \n    }\n    derivative(t, order) {\n       \n    }\n    parameterize(){\n       \n    }\n    continuity(order){\n      \n    }\n    visualize(){\n       \n    }\n    split(t){\n       \n    }\n    insertKnot(t){\n       \n    }\n    elevateDegree(){\n       \n    }\n    clone(){\n       \n    }\n}\n\nclass NurbsSurface {\n    constructor(uKnotVector, vKnotVector, controlPoints, uDegree, vDegree, dimension) {\n        this.uKnotVector = uKnotVector;\n        this.vKnotVector = vKnotVector;\n        this.controlPoints = controlPoints;\n        this.uDegree = uDegree;\n        this.vDegree = vDegree;\n        this.dimension = dimension\n    }\n\n    evaluate(u, v) {\n      \n    }\n\n    evaluateRational(u,v){\n      \n    }\n     getControlPoints() {\n      \n    }\n    transform(matrix) {\n      \n    }\n    homogenize(){\n       \n    }\n    dehomogenize(){\n       \n    }\n     normalDerivative(u, v, orderU, orderV) {\n       \n    }\n    parameterize(){\n       \n    }\n   continuity(orderU, orderV){\n      \n    }\n    visualize(){\n       \n    }\n    split(u,v){\n       \n    }\n     insertKnot(u,v){\n       \n    }\n    elevateDegree(){\n       \n    }\n    clone(){\n       \n    }\n}\n\nclass Intersection {\n    constructor(curveIndexA, curveIndexB, surfaceIndexA, surfaceIndexB, uParamA, vParamA, uParamB, vParamB, point) {\n        this.curveIndexA = curveIndexA;\n        this.curveIndexB = curveIndexB;\n        this.surfaceIndexA = surfaceIndexA;\n        this.surfaceIndexB = surfaceIndexB;\n        this.uParamA = uParamA;\n        this.vParamA = vParamA;\n        this.uParamB = uParamB;\n        this.vParamB = vParamB;\n        this.point = point;\n    }\n}\n\n\nfunction curveCurveIntersection(curveA, curveB) {\n   \n}\n\nfunction curveSurfaceIntersection(curve, surface) {\n    \n}\n\nfunction surfaceSurfaceIntersection(surfaceA, surfaceB) {\n    \n}\n```"
+    }
+  ],
+  "title": "Chat about ./NURBS.js",
+  "id": "20250101_090433298Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:04:53.087Z"
+}

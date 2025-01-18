@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the refine method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    refine(u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    refine(u) {\n        // Boehm's algorithm for knot insertion\n        const knotVector = this.knotVector;\n        const controlPoints = this.controlPoints;\n        const degree = this.degree;\n\n        // Find the knot span index\n        let i = degree;\n        while (i < knotVector.length - 1 && knotVector[i] <= u) {\n            i++;\n        }\n\n        // Check if the knot already exists\n        if (knotVector[i] === u) {\n            return; // Knot already exists, no need to refine\n        }\n\n        // Insert the knot\n        const newKnotVector = [...knotVector, u].sort((a, b) => a - b);\n        const newControlPoints = [];\n\n        // Calculate new control points using Boehm's algorithm\n        for (let j = 0; j <= degree; j++) {\n            newControlPoints[j] = controlPoints[j];\n        }\n\n        for (let k = 1; k <= degree; k++) {\n            for (let j = degree; j >= k; j--) {\n                const alpha = (u - knotVector[i - degree + j - 1]) / (knotVector[i + j - k] - knotVector[i - degree + j -1]);\n                newControlPoints[i - degree + j] = [\n                    (1-alpha)*newControlPoints[i - degree + j-1][0] + alpha*newControlPoints[i - degree + j][0],\n                    (1-alpha)*newControlPoints[i - degree + j-1][1] + alpha*newControlPoints[i - degree + j][1],\n                    (1-alpha)*newControlPoints[i - degree + j-1][2] + alpha*newControlPoints[i - degree + j][2],\n                    (1-alpha)*newControlPoints[i - degree + j-1][3] + alpha*newControlPoints[i - degree + j][3]\n                ];\n            }\n        }\n        \n        for (let j = i; j < controlPoints.length ; j++){\n            newControlPoints.push(controlPoints[j]);\n        }\n\n        this.knotVector = newKnotVector;\n        this.controlPoints = newControlPoints;\n\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Implementation in JavaScript",
+  "id": "20250104_194727174Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T19:47:31.540Z"
+}

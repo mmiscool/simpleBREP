@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the getKnotVector method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    getKnotVector() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(controlPoints, knots) {\n        this.controlPoints = controlPoints;\n        this.knots = knots;\n    }\n\n    getKnotVector() {\n        const knotsArray = this.knots.slice(); // Create a copy to avoid modifying the original array\n\n        if (!this.isKnotVectorValid()) {\n            throw new Error(\"Invalid knot vector provided.\");\n        }\n\n        return knotsArray;\n    }\n\n    isKnotVectorValid() {\n        const numberOfPoints = this.controlPoints.length;\n        const numberOfKnots = this.knots.length - (this.controlPoints.length > 0 ? 1 : 0);\n\n        if (numberOfPoints !== numberOfKnots) {\n            return false;\n        }\n\n        // Check for duplicate knots\n        for (let i = 1; i < this.knots.length; i++) {\n            if (this.knots[i] === this.knots[i - 1]) {\n                return false;\n            }\n        }\n\n        return true;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement getKnotVector.NurbsCurve",
+  "id": "20241223_170403941Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T17:04:17.114Z"
+}

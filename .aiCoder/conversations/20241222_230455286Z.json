@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Modify the calculateBasisMatrix method in the NurbsSurface class.\nImprove it.\n\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    calculateBasisMatrix(knots, weights) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    calculateBasisMatrix(knots, weights) {\n        const degree = knots.length - 1 - (knots.filter(knot => knot === knots[0]).length - 1);\n        const numControlPointsU = (this.controlPoints3D.length / this.knotsV.length);\n        const numControlPointsV = (this.controlPoints3D[0].length);\n        const basisMatrix = Array(numControlPointsU).fill(null).map(() => Array(numControlPointsV).fill(0));\n        \n        for (let i = 0; i < numControlPointsU; i++) {\n            for (let j = 0; j < numControlPointsV; j++) {\n                const basisU = this.basisFunctions(knots[i], degree);\n                const basisV = this.basisFunctions(knots[j], degree);\n                basisMatrix[i][j] = basisU * basisV * weights[i * numControlPointsV + j]; // Efficiently aggregates basis values\n            }\n        }\n        return basisMatrix;\n    }\n}\n```"
+    }
+  ],
+  "title": "Modify calculateBasisMatrix.NurbsSurface",
+  "id": "20241222_230455286Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T23:05:01.492Z"
+}

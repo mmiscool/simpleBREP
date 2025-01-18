@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunctionU method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    basisFunctionU(u) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    constructor(controlPoints, weights, knotsU, knotsV, degreeU, degreeV) {\n        this.controlPoints = controlPoints;\n        this.weights = weights;\n        this.knotsU = knotsU;\n        this.knotsV = knotsV;\n        this.degreeU = degreeU;\n        this.degreeV = degreeV;\n    }\n\n    basisFunctionU(u) {\n        const nu = this.degreeU + 1;\n        const n = this.controlPoints.length;\n        let num = new Array(nu).fill(0);\n        let denom = 1;\n\n        for (let i = 0; i <= this.degreeU; i++) {\n            num[i] = 1;\n            for (let j = this.degreeU - i; j < nu; j++) {\n                num[j] = num[j] * (u - this.knotsU[j]);\n            }\n        }\n\n        for (let i = 0; i <= this.degreeU; i++) {\n            denom = denom * (u - this.knotsU[i]);\n        }\n\n        let basisFunction = 0;\n        for (let j = nu - 1; j >= 0; j--) {\n            basisFunction = basisFunction + num[j] / denom;\n\n            if (j > 0) {\n                for (let k = Math.min(nu, i + 1); k < nu; k++) {\n                    num[k] = num[k] - num[j] * this.knotsU[k];\n                }\n            }\n\n            denom = denom * (this.knotsU[i + nu] - u);\n        }\n\n        return basisFunction;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunctionU.NurbsSurface",
+  "id": "20241223_010936595Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:09:49.099Z"
+}

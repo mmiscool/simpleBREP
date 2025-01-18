@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunction method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    basisFunction(t, degree) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    basisFunction(t, degree) {\n        if (typeof t !== 'number' || typeof degree !== 'number') {\n            throw new Error('Invalid input types. Expected number for both t and degree.');\n        }\n\n        if (degree < 0) {\n            throw new Error('Degree must be a non-negative integer.');\n        }\n\n        let basis = Array(degree + 1);\n        const denom = this.combination(degree, t);\n\n        for (let i = 0; i <= degree; i++) {\n            basis[i] = this.combination(degree, i) * Math.pow(-1, i) * Math.pow(t, i) / denom;\n        }\n\n        return basis;\n    }\n\n    combination(n, k) {\n        if (k > n || k < 0) return 0;\n        let result = 1;\n        for (let i = 1; i <= k; i++) {\n            result *= (n + 1 - i) / i;\n        }\n        return result;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunction.NurbsCurve",
+  "id": "20241222_222351188Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:23:59.722Z"
+}

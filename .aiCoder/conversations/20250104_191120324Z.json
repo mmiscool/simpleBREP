@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the insertKnot method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    insertKnot(t, knotVector, controlPoints) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    insertKnot(t) {\n        const { knots, degree, controlPoints } = this;\n        const p = degree;\n        const n = knots.length - 1;\n\n        // Find the span index\n        let span = this.findSpan(n, p, t, knots);\n\n        // Check if t is already a knot\n        if (knots[span] === t && knots[span + 1] === t) return;\n\n        // Check if t is outside the knot vector range\n        if (t < knots[p] || t > knots[n - p]) {\n            throw new Error(\"Knot value outside valid range\");\n        }\n\n        // Insert the knot\n        const newKnots = [...knots];\n        newKnots.splice(span + 1, 0, t);\n\n        //Refine control points\n        const newControlPoints = this.refineControlPoints(controlPoints, knots, degree, newKnots);\n\n\n        this.knots = newKnots;\n        this.controlPoints = newControlPoints;\n    }\n\n    refineControlPoints(controlPoints, oldKnots, p, newKnots) {\n        const m = oldKnots.length - 1;\n        const n = newKnots.length - 1;\n\n        if (n <= m) return controlPoints;\n\n        const newControlPoints = new Array(m + 1).fill(null).map(() => new Array(p+1).fill(null));\n        for (let i = 0; i <= m; i++) {\n          newControlPoints[i] = [...controlPoints[i]];\n        }\n\n        let r = 0;\n        for (let j = p; j <= n; j++) {\n            const a = newKnots[j];\n            if(a > oldKnots[m -p]) break;\n            const index = this.findSpan(m, p, a, oldKnots);\n            const alpha = this.computeAlpha(index, a, p, oldKnots);\n            for (let i = 0; i <= p - r; i++) {\n                const temp = alpha * newControlPoints[index - p + i];\n                newControlPoints[index - p + i] = [... newControlPoints[index - p + i + 1].map((v,index) => v - temp[index])];\n            }\n\n            r++;\n        }\n\n        return newControlPoints;\n    }\n    computeAlpha(index, a, p, knotVector) {\n        return (a - knotVector[index]) / (knotVector[index + p] - knotVector[index]);\n    }\n\n    findSpan(n, p, u, U) {\n        if (u >= U[n - p]) return n - p;\n        let low = p;\n        let high = n;\n        let mid;\n        while (high - low > 1) {\n            mid = Math.floor((low + high) / 2);\n            if (u < U[mid]) high = mid;\n            else low = mid;\n        }\n        return low;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Enhanced NURBS Library Development in JavaScript",
+  "id": "20250104_191120324Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T19:11:25.958Z"
+}

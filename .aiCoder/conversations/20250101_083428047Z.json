@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the _basisFunctionU method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    _basisFunctionU(i, u) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    _basisFunctionU(i, u) {\n        const { uKnotVector, uDegree } = this;\n        const degree = uDegree;\n        const knots = uKnotVector;\n        \n        if (u < knots[i] || u >= knots[i + 1]) {\n            return 0;\n        }\n\n        if (degree === 0) {\n            return (u >= knots[i] && u < knots[i + 1]) ? 1 : 0;\n        }\n\n        const left = this._basisFunctionU(i, u, degree - 1);\n        const right = this._basisFunctionU(i + 1, u, degree - 1);\n\n        const denom1 = knots[i + degree] - knots[i];\n        const denom2 = knots[i + degree + 1] - knots[i + 1];\n\n        const N_i = denom1 !== 0 ? (left * (u - knots[i]) / denom1) : 0;\n        const N_i1 = denom2 !== 0 ? (right * (knots[i + degree + 1] - u) / denom2) : 0;\n\n        return N_i + N_i1;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement _basisFunctionU.NurbsSurface",
+  "id": "20250101_083428047Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T08:34:31.090Z"
+}

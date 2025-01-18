@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the length method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    length() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    length() {\n        const n = this.controlPoints.length - 1;\n        const p = this.degree;\n        const resolution = 100; // Higher resolution for more accurate length calculation\n        let totalLength = 0;\n\n        const getPointAtT = (t) => {\n            const point = this.evaluate(t);\n            return point;\n        };\n\n        for (let i = 0; i < resolution; i++) {\n            const t0 = i / resolution;\n            const t1 = (i + 1) / resolution;\n            const p0 = getPointAtT(t0);\n            const p1 = getPointAtT(t1);\n\n            const segmentLength = Math.sqrt(\n                p1.reduce((sum, coord, index) => sum + Math.pow(coord - p0[index], 2), 0)\n            );\n\n            totalLength += segmentLength;\n        }\n\n        return totalLength;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement length.NurbsCurve",
+  "id": "20241223_005918458Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T00:59:20.755Z"
+}

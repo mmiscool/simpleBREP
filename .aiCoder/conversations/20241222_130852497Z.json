@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the getIntersectionPoint method in the Intersection class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Intersection {\n    getIntersectionPoint() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here's the implementation for the `getIntersectionPoint` method within the `Intersection` class:\n\n```javascript\nclass Intersection {\n  constructor(point1, point2) {\n    this.point1 = point1;\n    this.point2 = point2;\n  }\n\n  getIntersectionPoint() {\n    if (this.point1 === null || this.point2 === null) {\n      throw new Error('One or both points are undefined.');\n    }\n\n    const [x1, y1] = this.point1;\n    const [x2, y2] = this.point2;\n\n    // Calculate the intersection point using the line formula:\n    // (x - x1)(y2 - y1) - (y - y1)(x2 - x1) = 0\n    // Solving for x and y gives us the intersection point coordinates\n\n    const denom = (x2 - x1) * (y2 - y1);\n    if (denom === 0) {\n      throw new Error('The lines are parallel and do not intersect.');\n    }\n\n    const tFrac = ((x1 * y2 - y1 * x2) / denom).toFixed(5); // Adjust precision as needed\n\n    const x = x1 + tFrac * (x2 - x1);\n    const y = y1 + tFrac * (y2 - y1);\n\n    return { x, y };\n  }\n}\n```\n\nThis implementation first checks if either of the input points is undefined and throws an error if true. Then it calculates the intersection point using the line formula for two lines given in parametric form. If the lines are parallel (i.e., their slopes are equal), it throws an error indicating that they do not intersect. Otherwise, it returns the intersection point as an object containing the x and y coordinates."
+    }
+  ],
+  "title": "Implement getIntersectionPoint.Intersection",
+  "id": "20241222_130852497Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T13:09:05.181Z"
+}

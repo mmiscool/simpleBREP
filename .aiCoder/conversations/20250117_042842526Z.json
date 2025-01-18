@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Look at the BooleanOperation class. Determine if we are missing any edge cases that need to be handled.\n\nAddress the first problem you find.\n\nRemember to only produce code snippets that follow the formatting rules.",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass BooleanOperation {\n    constructor() {\n        this.trimmer = new SurfaceTrimmer();\n        this.tolerance = 0.0001;\n    }\n    union(solid1, solid2) {\n       if (!solid1) {\n            return solid2 ? solid2.copy() : new Solid([]);\n        }\n        if(!solid2){\n             return solid1 ? solid1.copy() : new Solid([]);\n        }\n        const resultSolid = solid1.copy();\n        for (const shell of solid2.getShells()) {\n            for (const face of shell.getFaces()) {\n                const newFace = new Face(face.surface, face.outerLoop, [...face.innerLoops]);\n                resultSolid.addFace(newFace);\n            }\n        }\n        return resultSolid;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Development",
+  "id": "20250117_042842526Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-17T04:29:12.819Z"
+}

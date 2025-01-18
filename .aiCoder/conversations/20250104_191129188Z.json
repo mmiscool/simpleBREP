@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the elevateDegree method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    elevateDegree() {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    // ... existing methods\n\n    elevateDegree() {\n        const { knots, degree, controlPoints } = this;\n        const newDegree = degree + 1;\n        const newKnots = this.elevateKnotVector(knots, degree, newDegree);\n        const newControlPoints = this.elevateControlPoints(controlPoints, knots, degree, newDegree);\n        this.knots = newKnots;\n        this.degree = newDegree;\n        this.controlPoints = newControlPoints;\n    }\n\n    elevateKnotVector(knotVector, p, newP) {\n        const n = knotVector.length - 1;\n        const newKnotVector = [];\n        for (let i = 0; i <= n + newP - p; ++i) {\n            newKnotVector.push(0);\n        }\n        for (let i = 0; i <= p; ++i) {\n            newKnotVector[i] = knotVector[i];\n        }\n        for (let i = p + 1; i <= n - p; ++i) {\n          const num = i - p;\n          const den = newP - p;\n          const sum = 0;\n          for(let j = 0; j <= den; ++j){\n            sum += knotVector[i + j];\n          }\n          newKnotVector[i + den] = sum / (den+1);\n        }\n\n        for (let i = n - p + 1; i <= n + newP - p; ++i) {\n            newKnotVector[i] = knotVector[i - (newP - p)];\n        }\n        return newKnotVector;\n    }\n\n    elevateControlPoints(controlPoints, knotVector, p, newP) {\n        const n = knotVector.length - 1;\n        const newControlPoints = new Array(n + newP - p + 1).fill(0).map(() => []);\n        const alpha = new Array(n + 1).fill(0);\n\n        for(let i = 0; i <= n; ++i){\n          alpha[i] = (knotVector[i + 1 + p] - knotVector[i + 1]) / (knotVector[i + 1 + p] - knotVector[i]);\n        }\n\n        for(let i = 0; i <= n + newP - p; ++i){\n          for(let j = 0; j <= p; ++j){\n            const controlPoint = controlPoints[i];\n            newControlPoints[i] = newControlPoints[i].concat(controlPoint[j]);\n          }\n        }\n\n        for (let i = 0; i <= n; ++i) {\n            newControlPoints[i] = alpha[i] * controlPoints[i] + (1 - alpha[i]) * controlPoints[i + 1];\n        }\n\n        return newControlPoints;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Enhanced NURBS Library Development in JavaScript",
+  "id": "20250104_191129188Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T19:11:34.635Z"
+}

@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the split method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    split(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    split(t) {\n        if (t < 0 || t > 1) {\n            throw new Error('Parameter t must be between 0 and 1.');\n        }\n        const n = this.controlPoints.length - 1;\n        const p = this.degree;\n        const U = this.knotVector;\n        const dim = this.dimension;\n        let span = this.findSpan(n, p, t, U);\n         const tParam =  U[0] + (U[U.length - 1] - U[0]) * t;\n        let k = span + 1;\n         \n         if(tParam === U[span]){\n            k = span;\n         }\n\n        let newKnots = [\n            ...U\n        ];\n        \n        for (let i = 0; i < p + 1; i++) {\n            newKnots.splice(k, 0, tParam);\n        }\n        let newControlPoints = [\n            ...this.controlPoints\n        ];\n       \n\n        for (let r = 1; r <= p; r++) {\n             let alpha = new Array(n + p + 1).fill(0);\n             for (let i = 0; i < p - r + 1; i++){\n                alpha[span - p + r + i] = (tParam - U[span + i]) / (U[span + 1 + i] - U[span + i]);\n             }\n            \n            for (let i = span - p + r; i < n + 1; i++) {\n                let newPoint = [];\n                for(let j = 0; j <= dim; j++){\n                    newPoint.push((1 - alpha[i]) * newControlPoints[i -1][j] + alpha[i] * newControlPoints[i][j]);\n                }\n                newControlPoints[i] = newPoint;\n            }\n            newControlPoints.splice(span + 1, 0, newControlPoints[span].slice());\n        }\n        const curve1ControlPoints = newControlPoints.slice(0, span + 1);\n        const curve2ControlPoints = newControlPoints.slice(span + 1);\n        const curve1KnotVector = newKnots.slice(0, k + p + 1);\n        const curve2KnotVector = newKnots.slice(k);\n        return [\n            new NurbsCurve(curve1KnotVector, curve1ControlPoints, p, dim),\n            new NurbsCurve(curve2KnotVector, curve2ControlPoints, p, dim)\n        ];\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement split.NurbsCurve",
+  "id": "20250101_090604333Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:06:09.229Z"
+}

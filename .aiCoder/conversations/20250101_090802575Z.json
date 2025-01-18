@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the insertKnot method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    insertKnot(u, v) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    insertKnot(u, v) {\n        if (u < 0 || u > 1 || v < 0 || v > 1) {\n            throw new Error('Parameters u and v must be between 0 and 1.');\n        }\n        const n = this.controlPoints.length - 1;\n        const m = this.controlPoints[0].length - 1;\n        const p = this.uDegree;\n        const q = this.vDegree;\n        const U = this.uKnotVector;\n        const V = this.vKnotVector;\n        const dim = this.dimension;\n\n        let spanU = this.findSpan(n, p, u, U);\n        const uParam = U[0] + (U[U.length - 1] - U[0]) * u;\n         let kU = spanU + 1;\n        if (uParam === U[spanU]) {\n            kU = spanU;\n        }\n\n        let spanV = this.findSpan(m, q, v, V);\n        const vParam = V[0] + (V[V.length - 1] - V[0]) * v;\n        let kV = spanV + 1;\n         if (vParam === V[spanV]) {\n            kV = spanV;\n        }\n\n        let newUKnots = [...U];\n        newUKnots.splice(kU, 0, uParam);\n        let newVKnots = [...V];\n        newVKnots.splice(kV, 0, vParam);\n\n\n        let newControlPoints = this.controlPoints.map(row => row.map(point => [...point]));\n\n\n       for (let r = 1; r <= p; r++) {\n            let alpha = new Array(n + p + 1).fill(0);\n            for (let i = 0; i < p - r + 1; i++) {\n                alpha[spanU - p + r + i] = (uParam - U[spanU + i]) / (U[spanU + 1 + i] - U[spanU + i]);\n            }\n             for (let j = 0; j <= m; j++) {\n                for (let i = spanU - p + r; i < n + r; i++) {\n                    let newPoint = [];\n                    for (let z = 0; z <= dim; z++) {\n                        newPoint.push((1 - alpha[i]) * newControlPoints[i - 1][j][z] + alpha[i] * newControlPoints[i][j][z]);\n                    }\n                    newControlPoints[i][j] = newPoint;\n                 }\n                newControlPoints.splice(spanU + 1, 0, newControlPoints[spanU].map(point => [...point]));\n            }\n        }\n\n        for (let r = 1; r <= q; r++) {\n            let alpha = new Array(m + q + 1).fill(0);\n            for (let i = 0; i < q - r + 1; i++) {\n                alpha[spanV - q + r + i] = (vParam - V[spanV + i]) / (V[spanV + 1 + i] - V[spanV + i]);\n            }\n             for (let i = 0; i <= n+p; i++) {\n                for (let j = spanV - q + r; j < m + r; j++) {\n                    let newPoint = [];\n                    for (let z = 0; z <= dim; z++) {\n                         newPoint.push((1 - alpha[j]) * newControlPoints[i][j - 1][z] + alpha[j] * newControlPoints[i][j][z]);\n                    }\n                     newControlPoints[i][j] = newPoint;\n                }\n             }\n             for (let i = 0; i <= n+p; i++) {\n                  newControlPoints[i].splice(spanV+1,0,newControlPoints[i][spanV].slice());\n            }\n        }\n\n        this.uKnotVector = newUKnots;\n        this.vKnotVector = newVKnots;\n        this.controlPoints = newControlPoints;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement insertKnot.NurbsSurface",
+  "id": "20250101_090802575Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:08:11.456Z"
+}

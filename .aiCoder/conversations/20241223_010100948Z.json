@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the findSpan method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    findSpan(n, p, t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here is the `findSpan` method for the `NurbsCurve` class:\n\n```javascript\nclass NurbsCurve {\n    constructor(knots, controlPoints, degree) {\n        this.knots = knots;\n        this.controlPoints = controlPoints;\n        this.degree = degree;\n    }\n\n    findSpan(n, p, t) {\n        let spanStart = 0;\n        let spanEnd = n - 1;\n\n        // Binary search to find the span index\n        while (spanStart <= spanEnd) {\n            const spanMid = Math.floor((spanStart + spanEnd) / 2);\n\n            if (this.knots[spanMid + this.degree + 1] > t) {\n                spanEnd = spanMid - 1;\n            } else if (this.knots[spanMid + 1] < t) {\n                spanStart = spanMid + 1;\n            } else {\n                return spanMid; // Found the span index\n            }\n        }\n\n        // If not found, return the last span index\n        return spanEnd;\n    }\n}\n```\n\nThis method uses a binary search algorithm to find the span index for a given parameter value `t`. It takes three arguments: `n` (the number of control points), `p` (the degree of the curve), and `t` (the parameter value). The method returns the span index, which is used to determine the basis functions' range in NURBS curve evaluation."
+    }
+  ],
+  "title": "Implement findSpan.NurbsCurve",
+  "id": "20241223_010100948Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T01:01:17.183Z"
+}

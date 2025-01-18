@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunction method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    basisFunction(t, degree) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here's how you can implement the basis function method in the NurbsCurve class:\n\n```javascript\nclass NurbsCurve {\n    constructor(points, knots, controlPoints) {\n        this.points = points;\n        this.knots = knots;\n        this.controlPoints = controlPoints;\n    }\n\n    basisFunction(t, degree) {\n        let n = degree + 1;\n\n        let B = new Array(n).fill(0);\n        let b = new Array(n).fill(0);\n        let x = 1 - t;\n\n        for (let i = 0; i < n; i++) {\n            if (i == 0 || i == n - 1) {\n                B[i] = 1;\n            } else {\n                b[i] = this.knots[i + degree + 2] - t;\n            }\n        }\n\n        for (let i = 0; i < n; i++) {\n            let sum = 0;\n            for (let j = 0; j < degree + 1; j++) {\n                if (j == 0 || j == degree + 1) {\n                    sum += b[i] * this.controlPoints[i][degree - j];\n                } else {\n                    sum += Math.pow(b[i], j) * B[i + j];\n                }\n            }\n            B[i] = sum;\n        }\n\n        return B;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunction.NurbsCurve",
+  "id": "20241223_050611576Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T05:06:15.210Z"
+}

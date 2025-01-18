@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the intersects method in the Shell class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Shell {\n    intersects(otherShell) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Shell {\n    intersects(otherShell) {\n         if (!otherShell || !(otherShell instanceof Shell)) {\n            return false;\n        }\n        for (const faceA of this.faces) {\n            for (const faceB of otherShell.faces) {\n                // Bounding box check\n                const bboxA = faceA.surface.getBoundingBox();\n                const bboxB = faceB.surface.getBoundingBox();\n                if (bboxA && bboxB) {\n                    if (bboxA.max.x < bboxB.min.x || bboxA.min.x > bboxB.max.x ||\n                        bboxA.max.y < bboxB.min.y || bboxA.min.y > bboxB.max.y ||\n                        bboxA.max.z < bboxB.min.z || bboxA.min.z > bboxB.max.z) {\n                        continue; \n                    }\n                }\n\n                //Perform intersection test if bounding boxes overlap\n                const intersections = this.faceFaceIntersection(faceA,faceB);\n                if(intersections.length>0){\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n    faceFaceIntersection(faceA, faceB){\n       if (!faceA || !faceB) {\n            return [];\n        }\n        const surfaceA = faceA.surface;\n        const surfaceB = faceB.surface;\n        if(!surfaceA || !surfaceB){\n            return [];\n        }\n         if(surfaceA.type != 'nurbs' || surfaceB.type !='nurbs'){\n            return [];\n         }\n         const nurbsSurfaceA = surfaceA.parameters.nurbsSurface;\n         const nurbsSurfaceB = surfaceB.parameters.nurbsSurface;\n\n         if(!nurbsSurfaceA || !nurbsSurfaceB){\n             return [];\n         }\n\n         const intersection = new NurbsIntersection();\n         return intersection.surfaceSurfaceIntersection(nurbsSurfaceA,nurbsSurfaceB, 1e-8);\n\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library for BREP Kernel Development",
+  "id": "20250110_104614300Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:46:19.265Z"
+}

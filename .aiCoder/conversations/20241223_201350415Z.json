@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the parametrize method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    parametrize(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here's the `parametrize` method for the `NurbsCurve3D` class, which calculates the 3D points on the curve at given parameter values:\n\n```javascript\nclass NurbsCurve3D {\n    constructor(controlPoints) {\n        this.controlPoints = controlPoints;\n    }\n\n    parametrize(t) {\n        if (Array.isArray(t)) {\n            return t.map((parameter) => this._parametrizeSingle(parameter));\n        }\n\n        throw new Error('Input must be an array of parameter values');\n    }\n\n    _parametrizeSingle(t) {\n        const n = this.controlPoints.length - 1;\n        const Nt = [(n + 1) * t];\n\n        for (let i = n - 1; i >= 0; i--) {\n            const wt = 1 - Nt[0];\n            const basis = this._basisFunction(t, i, Nt);\n\n            Nt.push(wt * basis);\n        }\n\n        const points = [];\n\n        for (let k = 0; k <= n; k++) {\n            const wk = Nt[k] * this.controlPoints[k][0];\n            const xk = wk * Nt[k + 1];\n            const yk = wk * Nt[k + 2];\n            const zk = wk * Nt[k + 3];\n\n            points.push([xk, yk, zk]);\n        }\n\n        return points;\n    }\n\n    _basisFunction(t, i, Nt) {\n        const wi = this._bSplineBasis(t, i, Nt);\n        const wip1 = this._bSplineBasis(t, i + 1, Nt);\n\n        return wi / (wi + wip1);\n    }\n\n    _bSplineBasis(t, i, Nt) {\n        if (i === 0) {\n            return ((1 + t) * (1 - t)) * Nt[0];\n        } else if (i === this.controlPoints.length - 1) {\n            return t * (1 - t) * Nt[i];\n        } else {\n            const wi = (i + 1) / (this.controlPoints.length);\n            const wip1 = (i + 2) / (this.controlPoints.length);\n\n            return ((1 - t) * Nt[i] + t * Nt[i + 1]) / (wi + wip1);\n        }\n    }\n}\n```\n\nThis `parametrize` method calculates the 3D points on the NURBS curve for a single parameter value or an array of parameter values. The private `_parametrizeSingle` method handles both cases and calls the private `_basisFunction` method to compute the B-spline basis function at each control point."
+    }
+  ],
+  "title": "Implement parametrize.NurbsCurve3D",
+  "id": "20241223_201350415Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-23T20:14:06.559Z"
+}

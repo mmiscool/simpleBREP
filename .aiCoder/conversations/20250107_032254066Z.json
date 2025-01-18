@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the split method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    split(u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    split(u) {\n        const span = this.findSpan(u, this.knotVector);\n        const leftControlPoints = this.controlPoints.slice(0, span + 1);\n        const rightControlPoints = this.controlPoints.slice(span);\n\n        const leftKnotVector = this.knotVector.slice(0, span + 2);\n        const rightKnotVector = this.knotVector.slice(span + 1);\n\n        const leftCurve = new NurbsCurve(leftControlPoints, leftKnotVector, this.degree, this.dimension, this.isRational);\n        const rightCurve = new NurbsCurve(rightControlPoints, rightKnotVector, this.degree, this.dimension, this.isRational);\n\n        return [leftCurve, rightCurve];\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Curve and Surface Implementation for BREP Kernel",
+  "id": "20250107_032254066Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-07T03:22:57.436Z"
+}

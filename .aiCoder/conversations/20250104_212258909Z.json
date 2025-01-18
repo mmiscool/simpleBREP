@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the degreeElevate method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    degreeElevate() {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    degreeElevate() {\n        const { knotVector, controlPoints, degree, dimension } = this;\n        const n = knotVector.length - degree - 1;\n        const newDegree = degree + 1;\n        const newControlPoints = new Array(n + newDegree + 1).fill(null).map(() => new Array(dimension).fill(0));\n        const newKnotVector = [...knotVector];\n\n        // Step 1: Extend the knot vector\n        newKnotVector.push(knotVector[n + 1]);\n\n        // Step 2: Calculate new control points\n        for (let i = 0; i <= n; i++) {\n            for (let j = 0; j < dimension; j++) {\n                newControlPoints[i][j] = controlPoints[i][j];\n            }\n        }\n        for (let i = 0; i <= n; i++) {\n            const alpha = (newDegree) / (newDegree + 1 - (i +1));\n            for (let j = 0; j < dimension; j++) {\n                newControlPoints[i+1][j] = alpha * controlPoints[i+1][j] + (1 - alpha) * controlPoints[i][j];\n            }\n        }\n\n\n        this.controlPoints = newControlPoints;\n        this.knotVector = newKnotVector;\n        this.degree = newDegree;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Development",
+  "id": "20250104_212258909Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T21:23:01.695Z"
+}

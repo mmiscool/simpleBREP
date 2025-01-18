@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Generate the classes and stub methods required to implement the plan. ",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    constructor(knotVector, controlPoints, degree, dimension = 3, isRational = true) {\n        this.knotVector = knotVector;\n        this.controlPoints = controlPoints;\n        this.degree = degree;\n        this.dimension = dimension;\n        this.isRational = isRational;\n    }\n    evaluate(u) {\n    }\n    evaluateHomogeneous(u) {\n    }\n    derivative(u, order) {\n    }\n    getControlPoints() {\n    }\n    transform(matrix) {\n    }\n    refine(u) {\n    }\n    degreeElevate() {\n    }\n    knotRemove(u) {\n    }\n    split(u) {\n    }\n    reverse() {\n    }\n    isPeriodic() {\n    }\n    isClosed() {\n    }\n    getBoundingBox() {\n    }\n    clone() {\n    }\n    getLength() {\n    }\n    getParameterAtLength(length) {\n    }\n    getCurvature(u) {\n    }\n    getNormal(u) {\n    }\n    getTanget(u) {\n    }\n    findSpan(u, knotVector) {\n    }\n\n}\nclass NurbsSurface {\n    constructor(uKnotVector, vKnotVector, controlPoints, uDegree, vDegree, isRational = true) {\n        this.uKnotVector = uKnotVector;\n        this.vKnotVector = vKnotVector;\n        this.controlPoints = controlPoints;\n        this.uDegree = uDegree;\n        this.vDegree = vDegree;\n        this.dimension = 3;\n        this.isRational = isRational;\n    }\n    evaluate(u, v) {\n    }\n    evaluateHomogeneous(u, v) {\n    }\n    uDerivative(u, v, order) {\n    }\n    vDerivative(u, v, order) {\n    }\n    normal(u, v) {\n    }\n    getControlPoints() {\n    }\n    transform(matrix) {\n    }\n    refineU(u) {\n    }\n    refineV(v) {\n    }\n    degreeElevateU() {\n    }\n    degreeElevateV() {\n    }\n    splitU(u) {\n    }\n    splitV(v) {\n    }\n    getBoundingBox() {\n    }\n    clone() {\n    }\n    getSurfaceArea() {\n    }\n    isPeriodicU() {\n    }\n    isPeriodicV() {\n    }\n    isClosedU() {\n    }\n    isClosedV() {\n    }\n}\nclass Intersection {\n    constructor(point, uParamA, vParamA, uParamB, vParamB, normalA, normalB) {\n        this.point = point;\n        this.uParamA = uParamA;\n        this.vParamA = vParamA;\n        this.uParamB = uParamB;\n        this.vParamB = vParamB;\n        this.normalA = normalA;\n        this.normalB = normalB;\n    }\n}\nclass NurbsIntersection {\n    curveCurveIntersection(curveA, curveB, tolerance) {\n    }\n    curveSurfaceIntersection(curve, surface, tolerance) {\n    }\n    surfaceSurfaceIntersection(surfaceA, surfaceB, tolerance) {\n    }\n}\n\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Design and Implementation",
+  "id": "20250104_212759252Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T21:28:06.171Z"
+}

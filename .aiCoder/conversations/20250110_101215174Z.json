@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the tangentAt method in the Edge class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Edge {\n    tangentAt(t) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```\nclass Edge {\n    tangentAt(t) {\n        if (!this.curve) {\n            const start = this.start;\n            const end = this.end;\n            return new Vertex(end.x - start.x, end.y - start.y, end.z - start.z);\n        }\n        return this.curve.derivative(t);\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library for BREP Kernel",
+  "id": "20250110_101215174Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-10T10:12:17.535Z"
+}

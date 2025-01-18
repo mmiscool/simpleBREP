@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunction method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    basisFunction(i, t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    basisFunction(i, t) {\n        const { knots, degree } = this;\n        const knotsLength = knots.length;\n\n        if (t < knots[i] || t >= knots[i + 1]) {\n            return 0;\n        }\n\n        if (degree === 0) {\n            return (t >= knots[i] && t < knots[i + 1]) ? 1 : 0;\n        }\n\n        const denom1 = knots[i + degree] - knots[i];\n        const denom2 = knots[i + degree + 1] - knots[i + 1];\n        const left = denom1 !== 0 ? this.basisFunction(i, t) * (t - knots[i]) / denom1 : 0;\n        const right = denom2 !== 0 ? this.basisFunction(i + 1, t) * (knots[i + degree + 1] - t) / denom2 : 0;\n\n        return left + right;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunction.NurbsCurve3D",
+  "id": "20250101_083901979Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T08:39:05.647Z"
+}

@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunction method in the Utils class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Utils {\n    basisFunction(i, degree, u, knots) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Utils {\n    basisFunction(i, degree, u, knots) {\n        if (degree === 0) {\n            if (knots[i] <= u && u < knots[i + 1]) {\n                return 1;\n            } else {\n                return 0;\n            }\n        }\n        const left = (u - knots[i]) / (knots[i + degree] - knots[i]);\n        const right = (knots[i + degree + 1] - u) / (knots[i + degree + 1] - knots[i + 1]);\n        const term1 = (knots[i + degree] - knots[i]) === 0 ? 0 : this.basisFunction(i, degree - 1, u, knots) * left;\n        const term2 = (knots[i + degree + 1] - knots[i + 1]) === 0 ? 0 : this.basisFunction(i + 1, degree - 1, u, knots) * right;\n        return term1 + term2;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Implement basisFunction.Utils",
+  "id": "20250116_075221929Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": true,
+  "lastModified": "2025-01-16T07:52:24.727Z"
+}

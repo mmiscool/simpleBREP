@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the curveCurveIntersection function.\nRemember to respond with a snippet in the form of the following:\n```\nfunction curveCurveIntersection(curveA, curveB) {\n    // your code here\n}\n```            \n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nfunction curveCurveIntersection(curveA, curveB) {\n    const intersections = [];\n    const curveAParameterization = curveA.parameterize();\n    const curveBParameterization = curveB.parameterize();\n    const curveAT0 = curveAParameterization.t0;\n    const curveAT1 = curveAParameterization.t1;\n    const curveBT0 = curveBParameterization.t0;\n    const curveBT1 = curveBParameterization.t1;\n    const startT = 0;\n    const endT = 1;\n    const tolerance = 1e-6;\n    const maxIterations = 20;\n    const findIntersection = (tAInitial, tBInitial) => {\n        let tA = tAInitial;\n        let tB = tBInitial;\n        for (let i = 0; i < maxIterations; i++) {\n            const pointA = curveA.evaluate(tA);\n            const pointB = curveB.evaluate(tB);\n            const diff = pointA.map((coord, index) => coord - pointB[index]);\n            const error = Math.sqrt(diff.reduce((sum, val) => sum + val * val, 0));\n            if (error < tolerance) {\n                return {\n                    tA: tA,\n                    tB: tB,\n                    point: pointA\n                };\n            }\n            const derivativeA = curveA.derivative(tA, 1);\n            const derivativeB = curveB.derivative(tB, 1);\n            const jMatrix = [\n                [\n                    derivativeA[0],\n                    -derivativeB[0]\n                ],\n                [\n                    derivativeA[1],\n                    -derivativeB[1]\n                ],\n                [\n                    derivativeA[2] || 0,\n                    -(derivativeB[2] || 0)\n                ]\n            ];\n            const jMatrixTranspose = jMatrix[0].map((_, colIndex) => jMatrix.map(row => row[colIndex]));\n            const jMatrixTransposeTimesJMatrix = jMatrixTranspose.map(row1 => jMatrix.map(row2 => row1.reduce((sum, val, index) => sum + val * row2[index], 0)));\n            const jMatrixTransposeTimesDiff = jMatrixTranspose.map(row => row.reduce((sum, val, index) => sum + val * diff[index], 0));\n            const det = jMatrixTransposeTimesJMatrix[0][0] * jMatrixTransposeTimesJMatrix[1][1] - jMatrixTransposeTimesJMatrix[0][1] * jMatrixTransposeTimesJMatrix[1][0];\n            if (Math.abs(det) < 1e-12) {\n                 return null;\n            }\n            const invJ = [\n                [\n                    jMatrixTransposeTimesJMatrix[1][1] / det,\n                    -jMatrixTransposeTimesJMatrix[0][1] / det\n                ],\n                [\n                    -jMatrixTransposeTimesJMatrix[1][0] / det,\n                    jMatrixTransposeTimesJMatrix[0][0] / det\n                ]\n            ];\n            const delta = invJ.map(row => row.reduce((sum, val, index) => sum + val * jMatrixTransposeTimesDiff[index], 0));\n            tA -= delta[0];\n            tB -= delta[1];\n            tA = Math.max(0, Math.min(1, tA));\n            tB = Math.max(0, Math.min(1, tB));\n        }\n        return null;\n    };\n    const initialGuesses = [];\n     for(let i = 0; i <= 10; i++){\n        for(let j = 0; j <= 10; j++){\n            initialGuesses.push([i/10,j/10]);\n        }\n     }\n    const foundIntersections = new Set();\n    initialGuesses.forEach(guess => {\n        const intersection = findIntersection(guess[0], guess[1]);\n        if (intersection) {\n            const key = `${intersection.tA.toFixed(6)},${intersection.tB.toFixed(6)}`;\n             if (!foundIntersections.has(key)) {\n                 intersections.push(new Intersection(null, null, null, null, intersection.tA, null, intersection.tB, null, intersection.point));\n                foundIntersections.add(key);\n             }\n            }\n    });\n    return intersections;\n}\n```"
+    }
+  ],
+  "title": "Implement curveCurveIntersection",
+  "id": "20250101_090843518Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:08:51.168Z"
+}

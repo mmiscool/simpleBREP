@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the constructor method in the Intersection class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Intersection {\n    constructor(curveIndexA, curveIndexB, surfaceIndexA, surfaceIndexB, uParamA, vParamA, uParamB, vParamB, point) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Intersection {\n    constructor(curveIndexA, curveIndexB, surfaceIndexA, surfaceIndexB, uParamA, vParamA, uParamB, vParamB, point) {\n        this.curveIndexA = curveIndexA;\n        this.curveIndexB = curveIndexB;\n        this.surfaceIndexA = surfaceIndexA;\n        this.surfaceIndexB = surfaceIndexB;\n        this.uParamA = uParamA;\n        this.vParamA = vParamA;\n        this.uParamB = uParamB;\n        this.vParamB = vParamB;\n        this.point = point;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Enhanced NURBS Library Development in JavaScript",
+  "id": "20250104_185606301Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T18:56:08.761Z"
+}

@@ -1,0 +1,53 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "[https://github.com/mmiscool/scrape_to_markdown](https://github.com/mmiscool/scrape_to_markdown)\n\n# GitHub - mmiscool/scrape\\_to\\_markdown: HTML to Markdown converter and crawler.\n\n## Scrape to markdown\n\n\n\nThis project extracts the functionality of fetching a URL and generating a markdown string from [clipper.js](https://github.com/philschmid/clipper.js) and packages it as a library that can be included in to your project using NPM.\n\nScraper to Markdown is a lightweight JavaScript library that allows you to scrape articles or web pages and convert their content into Markdown format. This is particularly useful for archiving, content generation, or data processing tasks.\n\n## Features\n\n\n\n-   Extracts main content from web pages.\n-   Converts HTML content into Markdown using [Turndown](https://github.com/mixmark-io/turndown).\n-   Handles GitHub Flavored Markdown (GFM) for better compatibility.\n-   Fallback mechanism for handling URLs that return raw Markdown.\n-   Built-in support for readability parsing via [@mozilla/readability](https://github.com/mozilla/readability).\n\n## Installation\n\n\n\nInstall the library using npm:\n\n```shell\nnpm install @mmiscool/scrape_to_markdown -s\n```\n\n## Usage\n\n\n\n### Import the Library\n\n\n\n```js\nimport { scrapeToMarkdown } from '@mmiscool/scrape_to_markdown';\n```\n\n### Scrape a Web Page to Markdown\n\n\n\n```js\n(async () => {\n    const url = 'https://example.com/some-article';\n    try {\n        const markdown = await scrapeToMarkdown(url);\n        console.log(markdown);\n    } catch (error) {\n        console.error('Error scraping the URL:', error);\n    }\n})();\n```\n\n### Fallback for Raw Markdown URLs\n\n\n\nThe library can handle cases where the URL directly provides Markdown content. It will return the raw Markdown if no HTML is detected.\n\n## API\n\n\n\n### `scrapeToMarkdown(url: string): Promise<string>`\n\n\n\nScrapes the content from the provided URL and converts it to Markdown.\n\n-   **Parameters**:\n    -   `url`: The URL of the web page to scrape.\n-   **Returns**: A `Promise` resolving to the Markdown content.\n\n### `extract_from_url(page: string): Promise<string>`\n\n\n\nUses [JSDOM](https://github.com/jsdom/jsdom) and [@mozilla/readability](https://github.com/mozilla/readability) to extract and convert the primary content from a web page into Markdown.\n\n### `extract_from_html(html: string): Promise<string>`\n\n\n\nConverts raw HTML input into Markdown.\n\n### `oldScrapeToMarkdown(url: string): Promise<string>`\n\n\n\nLegacy scraper for handling edge cases or simpler scraping needs.\n\n## Dependencies\n\n\n\nThis library relies on the following NPM packages:\n\n-   [axios](https://www.npmjs.com/package/axios) for HTTP requests.\n-   [cheerio](https://www.npmjs.com/package/cheerio) for parsing HTML content.\n-   [turndown](https://www.npmjs.com/package/turndown) for converting HTML to Markdown.\n-   [turndown-plugin-gfm](https://www.npmjs.com/package/turndown-plugin-gfm) for GitHub Flavored Markdown support.\n-   [@mozilla/readability](https://www.npmjs.com/package/@mozilla/readability) for extracting readable content from web pages.\n-   [jsdom](https://www.npmjs.com/package/jsdom) for DOM simulation.\n\n## Examples\n\n\n\n### Scraping a Blog Post\n\n\n\n```js\nimport { scrapeToMarkdown } from '@mmiscool/scrape_to_markdown';\n\n(async () => {\n    const url = 'https://medium.com/some-blog-post';\n    const markdown = await scrapeToMarkdown(url);\n    console.log(markdown);\n})();\n```\n\n### Converting Raw HTML to Markdown\n\n\n\n```js\nimport { extract_from_html } from '@mmiscool/scrape_to_markdown';\n\nconst html = `\n    <article>\n        <h1>Example Article</h1>\n        <p>This is an example paragraph.</p>\n    </article>\n`;\n\n(async () => {\n    const markdown = await extract_from_html(html);\n    console.log(markdown);\n})();\n```\n\n## Credits\n\n\n\nClipper uses the following open source libraries:\n\n-   [Mozilla Readability](https://github.com/mozilla/readability) - For parsing article content\n-   [Turndown](https://github.com/mixmark-io/turndown) - For converting HTML to Markdown\n-   [Crawlee](https://crawlee.dev/) - For crawling websites\n\n## License\n\n\n\n-   Apache 2.0"
+    },
+    {
+      "role": "user",
+      "content": "Tell me about this tool for doing markdown from html."
+    },
+    {
+      "role": "assistant",
+      "content": "The `scrape_to_markdown` library is a JavaScript tool that allows you to scrape web pages and convert their HTML content into Markdown format. It's built on top of several popular libraries, including Axios, Cheerio, Turndown, Turndown-plugin-gfm, and @mozilla/readability.\n\nKey features include:\n\n1. Extracting main content from web pages using JSDOM and Readability.\n2. Converting HTML content into Markdown with GitHub Flavored Markdown (GFM) support.\n3. Fallback mechanism for URLs that return raw Markdown content.\n4. Built-in readability parsing for better content extraction.\n\nTo use this library, install it via npm:\n\n```shell\nnpm install @mmiscool/scrape_to_markdown -s\n```\n\nThen, you can import and use the `scrapeToMarkdown` function to convert a web page into Markdown format:\n\n```js\nimport { scrapeToMarkdown } from '@mmiscool/scrape_to_markdown';\n\n(async () => {\n    const url = 'https://example.com/some-article';\n    try {\n        const markdown = await scrapeToMarkdown(url);\n        console.log(markdown);\n    } catch (error) {\n        console.error('Error scraping the URL:', error);\n    }\n})();\n```\n\nAdditionally, the library provides other functions like `extract_from_html` for converting raw HTML into Markdown and legacy `oldScrapeToMarkdown` for handling edge cases or simpler scraping needs."
+    },
+    {
+      "role": "user",
+      "content": "The last snippet was formatted incorrectly and needs to be corrected. \n                Remember that methods must be encapsulated in a class."
+    },
+    {
+      "role": "assistant",
+      "content": "Here's the correct formatting with an example class implementation:\n\n```js\nimport { scrapeToMarkdown } from '@mmiscool/scrape_to_markdown';\n\nclass WebScraper {\n    async convertToScaffoldMarkdown(url) {\n        try {\n            const markdown = await scrapeToMarkdown(url);\n            return markdown;\n        } catch (error) {\n            console.error('Error scraping the URL:', error);\n            throw error; // Propagate the error to the caller\n        }\n    }\n}\n\n// Usage example:\n(async () => {\n    const webScraper = new WebScraper();\n    const url = 'https://example.com/some-article';\n    try {\n        const markdownContent = await webScraper.convertToScaffoldMarkdown(url);\n        console.log(markdownContent);\n    } catch (error) {\n        // Handle the error here\n    }\n})();\n```\n\nThis code defines a `WebScraper` class that encapsulates the `scrapeToMarkdown` function and provides an asynchronous method `convertToScaffoldMarkdown` to convert web page HTML into Markdown format."
+    }
+  ],
+  "title": "Chat about NURBS.js",
+  "id": "20241222_223453565Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:35:37.527Z"
+}

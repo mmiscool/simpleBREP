@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the nurbsBasis method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    nurbsBasis(param, index, p, knots) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "Here's the `nurbsBasis` method for the `NurbsSurface` class, which calculates the basis functions for a given set of parameters and degree:\n\n```javascript\nclass NurbsSurface {\n    nurbsBasis(param, index, p, knots) {\n        let n = this.degree(); // get the degree of the curve\n\n        if (index < 0 || index >= p + 1) {\n            throw new Error('Invalid index value.');\n        }\n\n        const left = this.findSpan(param, knots, index, 0);\n        const right = this.findSpan(param, knots, index + 1, 0);\n\n        let basis = Array(p + 1).fill(0); // initialize the basis array with zeros\n\n        for (let j = left; j <= right; j++) {\n            const l = Math.max(j - left, 0);\n            const m = Math.min(right - j + 1, n + 1);\n\n            if (l === 0) {\n                basis[j] = 1;\n            } else {\n                for (let i = 0; i < l; i++) {\n                    basis[j] +=\n                        ((knots[index + m - l + i + 1] - param) * basis[j - 1]) /\n                        (knots[index + i + 1] - knots[index + i]);\n                }\n            }\n        }\n\n        return basis;\n    }\n\n    // Helper method to find the span of a parameter value in the knot vector\n    findSpan(param, knots, index, direction) {\n        let low = index;\n        let high = index;\n\n        while (low <= Math.max(index - 1, 0)) {\n            if (knots[high + 1] >= param && knots[low] < param) {\n                break;\n            }\n\n            low--;\n            high++;\n        }\n\n        return low + direction;\n    }\n\n    // Helper method to get the degree of the NURBS curve\n    degree() {\n        return this.degree_;\n    }\n}\n```\n\nThis implementation calculates the basis functions for a given set of parameters and degree using the De Boor's algorithm. It also includes helper methods `findSpan` and `degree` for finding the span of a parameter value in the knot vector and getting the degree of the NURBS curve, respectively."
+    }
+  ],
+  "title": "Implement nurbsBasis.NurbsSurface",
+  "id": "20241222_222736710Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:27:52.723Z"
+}

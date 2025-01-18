@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the basisFunctions method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    basisFunctions(param, span, knots) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```\nclass NurbsSurface {\n    basisFunctions(param, span, knots) {\n        const n = this.degree;\n        const p = n + 1;\n\n        if (span === p - 1) {\n            return [Math.pow(1 - param, p - 1)];\n        }\n\n        let N = Array(p);\n        for (let i = 0; i < p; i++) {\n            N[i] = Math.pow(param - knots[span + i], n) /\n                Math.pow(knots[span + i + n + 1] - knots[span + i], n);\n        }\n\n        for (let i = p - 2; i >= 0; i--) {\n            for (let j = 0; j <= n - i; j++) {\n                N[i] -= (1 - param) * N[i + 1];\n                if (N[i] < 0) N[i] = 0;\n            }\n        }\n\n        return N;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement basisFunctions.NurbsSurface",
+  "id": "20241222_222715724Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T22:27:30.047Z"
+}

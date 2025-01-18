@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the calculatePoint method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    calculatePoint(t) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    calculatePoint(t) {\n        if (t < 0 || t > 1) {\n            return null;\n        }\n        const degree = this.degree;\n        const controlPoints = this.controlPoints;\n        const knots = this.knots;\n        const weights = this.weights;\n        const n = controlPoints.length - 1;\n         if (n < degree) {\n            return null;\n        }\n        const span = this.findSpan(t, n, knots);\n        const N = new Array(degree + 1).fill(0);\n         for (let j = 0; j <= degree; j++) {\n            N[j] = this.basisFunction(span - degree + j, t);\n        }\n        let point = [0, 0, 0];\n        let denominator = 0;\n         for (let i = 0; i <= degree; i++) {\n            const weight = weights[span - degree + i];\n            denominator += N[i] * weight;\n            for (let j = 0; j < 3; j++) {\n                point[j] += N[i] * weight * controlPoints[span - degree + i][j];\n            }\n        }\n         if (denominator === 0) {\n            return [0,0,0];\n         }\n        for (let j = 0; j < 3; j++) {\n            point[j] /= denominator;\n        }\n         return point;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement calculatePoint.NurbsCurve3D",
+  "id": "20250101_090009121Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:00:12.255Z"
+}

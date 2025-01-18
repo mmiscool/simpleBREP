@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the _basisFunctionU method in the NurbsSurface class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    _basisFunctionU(i, u) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    _basisFunctionU(i, u) {\n        const p = this.uDegree;\n        const U = this.uKnotVector;\n        if (p === 0) {\n            if (U[i] <= u && u < U[i + 1]) {\n                return 1;\n            } else {\n                return 0;\n            }\n        }\n         if (i < 0 || i > U.length - 1)\n            return 0;\n        if (U[i + p] === U[i])\n            return 0;\n        let N = new Array(p + 1).fill(0);\n        N[0] = 1;\n        for (let k = 1; k <= p; k++) {\n           if (N[k - 1] === 0)\n                continue;\n            let left = 0;\n            let right = 0;\n            if (U[i + k] - U[i] !== 0) {\n                left = (u - U[i]) / (U[i + k] - U[i]) * N[k - 1];\n            }\n            if (U[i + k + 1] - U[i + 1] !== 0) {\n                right = (U[i + k + 1] - u) / (U[i + k + 1] - U[i + 1]) * N[k - 1];\n            }\n            N[k] = left + right;\n        }\n        return N[p];\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement _basisFunctionU.NurbsSurface",
+  "id": "20250101_085927858Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T08:59:31.615Z"
+}

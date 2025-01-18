@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the isClosed method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    isClosed() {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    isClosed() {\n        const {knotVector, controlPoints, degree} = this;\n        if (knotVector.length <= degree + 1) return false; //Need at least two knots for a curve\n\n        const n = knotVector.length - degree - 1;\n        const tolerance = 1e-6; // Adjust tolerance as needed\n\n        // Check if the start and end points are close enough\n        const startPoint = this.evaluate(knotVector[degree]);\n        const endPoint = this.evaluate(knotVector[n]);\n\n        for (let i = 0; i < startPoint.length; i++) {\n            if (Math.abs(startPoint[i] - endPoint[i]) > tolerance) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "NURBS Library Development for BREP Kernel",
+  "id": "20250104_212233597Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-04T21:22:36.455Z"
+}

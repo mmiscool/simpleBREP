@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the _bSplineBasis method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    _bSplineBasis(t, i, Nt) {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    _bSplineBasis(t, i, Nt) {\n        const degree = this.degree;\n        const knots = this.knots;\n        if (degree === 0) {\n            if (knots[i] <= t && t < knots[i + 1]) {\n                return 1;\n            } else {\n                return 0;\n            }\n        }\n       let left = 0;\n        if (knots[i + degree] - knots[i] !== 0) {\n            left = (t - knots[i]) / (knots[i + degree] - knots[i]) * this._bSplineBasis(t, i, this.calculateBasisValues(t));\n        }\n        let right = 0;\n        if (knots[i + degree + 1] - knots[i + 1] !== 0) {\n             right = (knots[i + degree + 1] - t) / (knots[i + degree + 1] - knots[i + 1]) * this._bSplineBasis(t, i + 1, this.calculateBasisValues(t));\n        }\n        return left + right;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement _bSplineBasis.NurbsCurve3D",
+  "id": "20250101_090221915Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:02:24.661Z"
+}

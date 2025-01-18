@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the deBoor method in the Utils class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Utils {\n    deBoor(degree, controlPoints, knots, weights, u) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Utils {\n    deBoor(degree, controlPoints, knots, weights, u) {\n        const n = controlPoints.length - 1;\n        const span = this.findSpan(n, degree, u, knots);\n        const n_basis = degree + 1;\n        const basis = new Array(n_basis).fill(0);\n        for (let j = 0; j < n_basis; j++) {\n            basis[j] = this.basisFunction(span - degree + j, degree, u, knots);\n        }\n        let point = new Vector3D(0, 0, 0);\n        let weightSum = 0;\n        for (let i = 0; i < n_basis; i++) {\n          const weightedControlPoint = new Vector3D(controlPoints[span - degree + i].getX() * weights[span - degree + i], controlPoints[span - degree + i].getY() * weights[span - degree + i],controlPoints[span - degree + i].getZ() * weights[span - degree + i] )\n            point = point.add(weightedControlPoint.scale(basis[i]));\n            weightSum += basis[i] * weights[span - degree + i];\n        }\n        if (weightSum === 0) {\n            return new Point3D(0, 0, 0);\n        }\n        return new Point3D(point.getX() / weightSum, point.getY() / weightSum, point.getZ() / weightSum);\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Implementing a NURBS Library in JavaScript",
+  "id": "20250116_075237270Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-16T07:52:41.386Z"
+}

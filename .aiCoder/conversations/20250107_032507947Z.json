@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the getParameterAtLength method in the NurbsCurve class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve {\n    getParameterAtLength(length) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve {\n    getParameterAtLength(length) {\n        const numSamples = 100; // Define the number of sample points for accuracy\n        let accumulatedLength = 0;\n        let previousPoint = this.evaluate(0);\n        let u = 0;\n\n        for (let i = 1; i <= numSamples; i++) {\n            u = i / numSamples; // Parameter value from 0 to 1\n            const currentPoint = this.evaluate(u);\n            accumulatedLength += Math.sqrt(\n                (currentPoint[0] - previousPoint[0]) ** 2 +\n                (currentPoint[1] - previousPoint[1]) ** 2 +\n                (currentPoint[2] - previousPoint[2]) ** 2\n            );\n\n            if (accumulatedLength >= length) {\n                return u; // Return the parameter value once the desired length is reached\n            }\n            previousPoint = currentPoint;\n        }\n\n        return u; // Return the last parameter if length is not reached within samples\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "\"Implementing NURBS Functionality in a 3D Modeling Library\"",
+  "id": "20250107_032507947Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-07T03:25:12.313Z"
+}

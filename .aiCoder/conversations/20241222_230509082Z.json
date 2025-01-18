@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "NURBS.js",
+      "filePath": "NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Modify the getUKnotVector method in the NurbsSurface class.\nImprove it.\n\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsSurface {\n    getUKnotVector() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsSurface {\n    getUKnotVector() {\n        const uKnotVector = [];\n        const controlPointCountU = this.controlPoints3D.length / this.knotsU.length;\n\n        for (let i = 0; i <= this.degreeU; i++) {\n            uKnotVector.push(0); // Add initial repetition of knots at 0\n        }\n\n        for (let i = 1; i <= controlPointCountU - this.degreeU; i++) {\n            const knot = (i - 1) / (controlPointCountU - this.degreeU);\n            uKnotVector.push(knot);\n        }\n\n        for (let i = 0; i <= this.degreeU; i++) {\n            uKnotVector.push(1); // Add final repetition of knots at 1\n        }\n\n        return uKnotVector;\n    }\n}\n```"
+    }
+  ],
+  "title": "Modify getUKnotVector.NurbsSurface",
+  "id": "20241222_230509082Z",
+  "targetFile": "NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2024-12-22T23:05:15.982Z"
+}

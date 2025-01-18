@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "./NURBS.js",
+      "filePath": "./NURBS.js",
+      "description": "// Code file to be edited"
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": ""
+    },
+    {
+      "role": "user",
+      "content": "Write the isClosed method in the NurbsCurve3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass NurbsCurve3D {\n    isClosed() {\n        // your code here\n    }\n}\n```\n"
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass NurbsCurve3D {\n    isClosed() {\n        if (this.controlPoints.length < 2) {\n            return false;\n        }\n\n        const firstPoint = this.controlPoints[0];\n        const lastPoint = this.controlPoints[this.controlPoints.length - 1];\n\n        // Use a small tolerance for floating-point comparisons\n        const tolerance = 1e-6;\n\n        for (let i = 0; i < 3; i++) {\n           if (Math.abs(firstPoint[i] - lastPoint[i]) > tolerance) {\n                return false;\n            }\n        }\n\n        return true;\n    }\n}\n```"
+    }
+  ],
+  "title": "Implement isClosed.NurbsCurve3D",
+  "id": "20250101_090014391Z",
+  "targetFile": "./NURBS.js",
+  "chatMode": "chat",
+  "lastModified": "2025-01-01T09:00:16.821Z"
+}
