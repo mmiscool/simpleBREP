@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/plan-edit-prompt.md",
+      "filePath": "./.aiCoder/prompts/plan-edit-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "Plan to be edited:",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Lets make a tic tac toe game.",
+      "hidden": false
+    }
+  ],
+  "title": "Plan Chat",
+  "id": "20250308_091128389Z",
+  "targetFile": null,
+  "chatMode": "plan",
+  "conversationNew": true,
+  "lastModified": "2025-03-08T09:12:18.646Z"
+}

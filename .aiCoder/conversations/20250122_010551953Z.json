@@ -1,0 +1,43 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Running tests...\n---------------------\nRunning test: GeometricSurfaceIntersectionTest\n  🔥 Error in test GeometricSurfaceIntersectionTest: TypeError: Cannot read properties of null (reading 'length')\n    at tests.GeometricSurfaceIntersectionTest (file:///home/user/projects/simpleBREP/brep.js:4530:39)\n    at testing.runTests (file:///home/user/projects/simpleBREP/brep.js:5091:60)\n    at file:///home/user/projects/simpleBREP/test.js:4:7\n    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)\n---------------------\nRunning test: SurfaceIntersectionParallelPlanesTest\n  🔥 Error in test SurfaceIntersectionParallelPlanesTest: TypeError: Cannot read properties of null (reading 'length')\n    at tests.SurfaceIntersectionParallelPlanesTest (file:///home/user/projects/simpleBREP/brep.js:4664:39)\n    at testing.runTests (file:///home/user/projects/simpleBREP/brep.js:5091:60)\n    at file:///home/user/projects/simpleBREP/test.js:4:7\n    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)\n---------------------\nRunning test: SurfaceIntersectionSkewedSurfacesTest\n  🔥 Error in test SurfaceIntersectionSkewedSurfacesTest: TypeError: Cannot read properties of null (reading 'length')\n    at tests.SurfaceIntersectionSkewedSurfacesTest (file:///home/user/projects/simpleBREP/brep.js:4748:39)\n    at testing.runTests (file:///home/user/projects/simpleBREP/brep.js:5091:60)\n    at file:///home/user/projects/simpleBREP/test.js:4:7\n    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)\n---------------------\nRunning test: SurfaceNoIntersectionTest\n  🔥 Error in test SurfaceNoIntersectionTest: TypeError: Cannot read properties of null (reading 'length')\n    at tests.SurfaceNoIntersectionTest (file:///home/user/projects/simpleBREP/brep.js:4832:39)\n    at testing.runTests (file:///home/user/projects/simpleBREP/brep.js:5091:60)\n    at file:///home/user/projects/simpleBREP/test.js:4:7\n    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)\n---------------------\nRunning test: findUVOnSurface\n  🔥 Error in test findUVOnSurface: TypeError: Cannot read properties of null (reading 'passed')\n    at testing.runTests (file:///home/user/projects/simpleBREP/brep.js:5092:32)\n    at file:///home/user/projects/simpleBREP/test.js:4:7\n    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)\n😞 Some tests failed.",
+      "hidden": false
+    }
+  ],
+  "title": "Chat about ./brep.js",
+  "id": "20250122_010551953Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": true,
+  "lastModified": "2025-01-22T01:05:56.172Z"
+}

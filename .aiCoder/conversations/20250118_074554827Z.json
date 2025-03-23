@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "lets make the tests class have all async methods. ",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nexport class tests {\n    async Point3DTest() {\n        const point = new Point3D(1, 2, 3);\n        if (point.getX() !== 1) return false;\n        if (point.getY() !== 2) return false;\n        if (point.getZ() !== 3) return false;\n        point.setX(4);\n        point.setY(5);\n        point.setZ(6);\n        if (point.getX() !== 4) return false;\n        if (point.getY() !== 5) return false;\n        if (point.getZ() !== 6) return false;\n        const arr = point.toArray();\n        if (arr[0] !== 4) return false;\n        if (arr[1] !== 5) return false;\n        if (arr[2] !== 6) return false;\n        const otherPoint = new Point3D(7, 10, 14);\n        const distance = point.distanceTo(otherPoint);\n        if (Math.abs(distance - Math.sqrt(45)) > 0.001) return false;\n        const vector = new Vector3D(1, 1, 1);\n        const translatedPoint = point.translate(vector);\n        if (translatedPoint.getX() !== 5) return false;\n        if (translatedPoint.getY() !== 6) return false;\n        if (translatedPoint.getZ() !== 7) return false;\n        const addedPoint = point.add(vector);\n        if (addedPoint.getX() !== 5) return false;\n        if (addedPoint.getY() !== 6) return false;\n        if (addedPoint.getZ() !== 7) return false;\n        const subbedPoint = point.sub(vector);\n        if (subbedPoint.getX() !== 3) return false;\n        if (subbedPoint.getY() !== 4) return false;\n        if (subbedPoint.getZ() !== 5) return false;\n        return true;\n    }\n\n    async Vector3DTest() {\n        const vector = new Vector3D(1, 2, 3);\n        if (vector.getX() !== 1) return false;\n        if (vector.getY() !== 2) return false;\n        if (vector.getZ() !== 3) return false;\n        vector.setX(4);\n        vector.setY(5);\n        vector.setZ(6);\n        if (vector.getX() !== 4) return false;\n        if (vector.getY() !== 5) return false;\n        if (vector.getZ() !== 6) return false;\n        const arr = vector.toArray();\n        if (arr[0] !== 4) return false;\n        if (arr[1] !== 5) return false;\n        if (arr[2] !== 6) return false;\n        const mag = vector.magnitude();\n        if (Math.abs(mag - Math.sqrt(77)) > 0.001) return false;\n        const normalized = vector.normalize();\n        if (Math.abs(normalized.magnitude() - 1) > 0.001) return false;\n        const otherVector = new Vector3D(1, 0, 0);\n        const dot = vector.dot(otherVector);\n        if (dot !== 4) return false;\n        const cross = vector.cross(otherVector);\n        if (cross.getX() !== 0) return false;\n        if (cross.getY() !== -6) return false;\n        if (cross.getZ() !== 5) return false;\n        const added = vector.add(otherVector);\n        if (added.getX() !== 5) return false;\n        if (added.getY() !== 5) return false;\n        if (added.getZ() !== 6) return false;\n        const subbed = vector.sub(otherVector);\n        if (subbed.getX() !== 3) return false;\n        if (subbed.getY() !== 5) return false;\n        if (subbed.getZ() !== 6) return false;\n        const scaled = vector.scale(2);\n        if (scaled.getX() !== 8) return false;\n        if (scaled.getY() !== 10) return false;\n        if (scaled.getZ() !== 12) return false;\n        return true;\n    }\n\n    async NurbsCurveTest() {\n        const controlPoints = [\n            new Point3D(0, 0, 0),\n            new Point3D(1, 1, 0),\n            new Point3D(2, 0, 0)\n        ];\n        const knots = [\n            0,\n            0,\n            0,\n            1,\n            1,\n            1\n        ];\n        const weights = [\n            1,\n            1,\n            1\n        ];\n        const curve = new NurbsCurve(2, controlPoints, knots, weights);\n        if (curve.getDegree() !== 2) return false;\n        if (curve.getControlPoints() !== controlPoints) return false;\n        if (curve.getKnots() !== knots) return false;\n        if (curve.getWeights() !== weights) return false;\n        const evalPoint = curve.evaluate(0.5);\n        if (!evalPoint) return false;\n        if (Math.abs(evalPoint.getX() - 1) > 0.001) return false;\n        if (Math.abs(evalPoint.getY() - 0.5) > 0.001) return false;\n        if (Math.abs(evalPoint.getZ() - 0) > 0.001) return false;\n        const derivative = curve.evaluateDerivative(0.5, 1);\n        if (!derivative) return false;\n        const length = curve.length();\n        if (length <= 0) return false;\n        const tangent = curve.tangeant(0.5);\n        if (!tangent) return false;\n        const splitCurves = curve.splitCurve(0.5);\n        if (!splitCurves || splitCurves.length !== 2) return false;\n        const reversedCurve = curve.reverse();\n        if (!reversedCurve) return false;\n        return true;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "\"Async Method Transformation in NURBS Library Test Class\"",
+  "id": "20250118_074554827Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T07:46:41.200Z"
+}

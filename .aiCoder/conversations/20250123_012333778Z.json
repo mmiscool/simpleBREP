@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the distanceTo method in the Point3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Point3D {\n    distanceTo(otherPoint) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nexport class Point3D {\n    distanceTo(otherPoint) {\n        if (!(otherPoint instanceof Point3D)) {\n            throw new Error(\"Argument must be an instance of Point3D\");\n        }\n\n        const deltaX = otherPoint.getX() - this.x;\n        const deltaY = otherPoint.getY() - this.y;\n        const deltaZ = otherPoint.getZ() - this.z;\n\n        return Math.sqrt(deltaX ** 2 + deltaY ** 2 + deltaZ ** 2);\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "\"Implementing Distance Calculation in a 3D Point Class\"",
+  "id": "20250123_012333778Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-23T01:23:36.317Z"
+}

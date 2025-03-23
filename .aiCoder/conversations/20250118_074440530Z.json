@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "I get this error when running the tests. \n\nTest failed: Point3DTest\nRunning test: Vector3DTest\n---------------------------------------------------------------------------------\nTest failed: Vector3DTest\nRunning test: NurbsCurveTest\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nexport class Point3D {\n    constructor(x, y, z) {\n        if (typeof x !== 'number' || typeof y !== 'number' || typeof z !== 'number') {\n            throw new Error('Coordinates must be numbers');\n        }\n        this.x = x;\n        this.y = y;\n        this.z = z;\n    }\n    getX() {\n        return this.x;\n    }\n    getY() {\n        return this.y;\n    }\n    getZ() {\n        return this.z;\n    }\n    setX(x) {\n        if (typeof x !== 'number') {\n            throw new Error('X coordinate must be a number');\n        }\n        this.x = x;\n    }\n    setY(y) {\n        if (typeof y !== 'number') {\n            throw new Error('Y coordinate must be a number');\n        }\n        this.y = y;\n    }\n    setZ(z) {\n        if (typeof z !== 'number') {\n            throw new Error('Z coordinate must be a number');\n        }\n        this.z = z;\n    }\n    toArray() {\n        return [this.x, this.y, this.z];\n    }\n    distanceTo(otherPoint) {\n        if (!(otherPoint instanceof Point3D)) {\n            throw new Error('Argument must be an instance of Point3D');\n        }\n        const dx = this.x - otherPoint.x;\n        const dy = this.y - otherPoint.y;\n        const dz = this.z - otherPoint.z;\n        return Math.sqrt(dx * dx + dy * dy + dz * dz);\n    }\n    translate(vector) {\n        if (!(vector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        return new Point3D(this.x + vector.getX(), this.y + vector.getY(), this.z + vector.getZ());\n    }\n    add(vector) {\n        return this.translate(vector);\n    }\n    sub(vector) {\n        if (!(vector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        return new Point3D(this.x - vector.getX(), this.y - vector.getY(), this.z - vector.getZ());\n    }\n}\n\nexport class Vector3D {\n    constructor(x, y, z) {\n        if (typeof x !== 'number' || typeof y !== 'number' || typeof z !== 'number') {\n            throw new Error('Coordinates must be numbers');\n        }\n        this.x = x;\n        this.y = y;\n        this.z = z;\n    }\n    getX() {\n        return this.x;\n    }\n    getY() {\n        return this.y;\n    }\n    getZ() {\n        return this.z;\n    }\n    setX(x) {\n        if (typeof x !== 'number') {\n            throw new Error('X coordinate must be a number');\n        }\n        this.x = x;\n    }\n    setY(y) {\n        if (typeof y !== 'number') {\n            throw new Error('Y coordinate must be a number');\n        }\n        this.y = y;\n    }\n    setZ(z) {\n        if (typeof z !== 'number') {\n            throw new Error('Z coordinate must be a number');\n        }\n        this.z = z;\n    }\n    toArray() {\n        return [this.x, this.y, this.z];\n    }\n    magnitude() {\n        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);\n    }\n    normalize() {\n        const mag = this.magnitude();\n        if (mag === 0) {\n            return new Vector3D(0, 0, 0);\n        }\n        return new Vector3D(this.x / mag, this.y / mag, this.z / mag);\n    }\n    dot(otherVector) {\n        if (!(otherVector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        return this.x * otherVector.getX() + this.y * otherVector.getY() + this.z * otherVector.getZ();\n    }\n    cross(otherVector) {\n        if (!(otherVector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        const x = this.y * otherVector.getZ() - this.z * otherVector.getY();\n        const y = this.z * otherVector.getX() - this.x * otherVector.getZ();\n        const z = this.x * otherVector.getY() - this.y * otherVector.getX();\n        return new Vector3D(x, y, z);\n    }\n    add(otherVector) {\n        if (!(otherVector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        return new Vector3D(this.x + otherVector.getX(), this.y + otherVector.getY(), this.z + otherVector.getZ());\n    }\n    sub(otherVector) {\n        if (!(otherVector instanceof Vector3D)) {\n            throw new Error('Argument must be an instance of Vector3D');\n        }\n        return new Vector3D(this.x - otherVector.getX(), this.y - otherVector.getY(), this.z - otherVector.getZ());\n    }\n    scale(scalar) {\n        if (typeof scalar !== 'number') {\n            throw new Error('Scalar must be a number');\n        }\n        return new Vector3D(this.x * scalar, this.y * scalar, this.z * scalar);\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "\"Building a Robust NURBS Library in JavaScript\"",
+  "id": "20250118_074440530Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-18T07:45:18.966Z"
+}

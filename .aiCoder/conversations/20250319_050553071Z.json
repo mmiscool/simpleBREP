@@ -1,0 +1,63 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "assistant",
+      "content": "I understand and will follow these instructions.",
+      "hidden": false
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "assistant",
+      "content": "I understand and will follow these instructions.",
+      "hidden": false
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "assistant",
+      "content": "I understand and will follow these instructions.",
+      "hidden": false
+    },
+    {
+      "role": "user",
+      "content": "./simpleBREP.js",
+      "filePath": "./simpleBREP.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for sharing the complete source code that I will be editing.",
+      "hidden": false
+    },
+    {
+      "role": "user",
+      "content": "TEll me about the contents of the code file.\n",
+      "hidden": false
+    }
+  ],
+  "title": "TEll me about our conversation so far. \n",
+  "id": "20250319_050553071Z",
+  "targetFile": "./simpleBREP.js",
+  "chatMode": "chat",
+  "conversationNew": true,
+  "lastModified": "2025-03-19T05:06:10.381Z"
+}

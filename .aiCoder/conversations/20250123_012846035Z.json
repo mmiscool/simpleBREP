@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Write the setY method in the Point3D class.\nRemember to respond with a snippet in the form of the following:\n```\nclass Point3D {\n    setY(y) {\n        // your code here\n    }\n}\n```\n",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Point3D {\n    setY(y) {\n        if (typeof y !== 'number') {\n            throw new Error('y coordinate must be a number');\n        }\n        this.y = y;\n    }\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Implementing Method Functionality in a NURBS Library for JavaScript",
+  "id": "20250123_012846035Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-23T01:28:47.868Z"
+}

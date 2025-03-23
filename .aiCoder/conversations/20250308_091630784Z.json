@@ -1,0 +1,43 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./ticTacToe.js",
+      "filePath": "./ticTacToe.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Lets make the tic tac toe game.",
+      "hidden": false
+    }
+  ],
+  "title": "Chat about ./ticTacToe.js",
+  "id": "20250308_091630784Z",
+  "targetFile": "./ticTacToe.js",
+  "chatMode": "chat",
+  "conversationNew": true,
+  "lastModified": "2025-03-08T09:16:47.816Z"
+}

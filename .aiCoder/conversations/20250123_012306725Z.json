@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./brep.js",
+      "filePath": "./brep.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Generate the classes and stub methods required to implement the plan. ",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "```javascript\nclass Point3D {\n    constructor(x, y, z) {}\n\n    getX() {}\n    getY() {}\n    getZ() {}\n    setX(x) {}\n    setY(y) {}\n    setZ(z) {}\n    toArray() {}\n    distanceTo(otherPoint) {}\n    translate(vector) {}\n    add(vector) {}\n    sub(vector) {}\n}\n\nclass Vector3D {\n    constructor(x, y, z) {}\n\n    getX() {}\n    getY() {}\n    getZ() {}\n    setX(x) {}\n    setY(y) {}\n    setZ(z) {}\n    toArray() {}\n    magnitude() {}\n    normalize() {}\n    dot(otherVector) {}\n    cross(otherVector) {}\n    add(otherVector) {}\n    sub(otherVector) {}\n    scale(scalar) {}\n}\n\nclass NurbsCurve {\n    constructor(degree, controlPoints, knots, weights) {}\n\n    getDegree() {}\n    getControlPoints() {}\n    getKnots() {}\n    getWeights() {}\n    evaluate(u) {}\n    evaluateDerivative(u, order) {}\n    length() {}\n    tangeant(u) {}\n    insertKnot(u, multiplicity) {}\n    removeKnot(u, multiplicity) {}\n    splitCurve(u) {}\n    reverse() {}\n}\n\nclass NurbsSurface {\n    constructor(degreeU, degreeV, controlPoints, knotsU, knotsV, weights) {}\n\n    getDegreeU() {}\n    getDegreeV() {}\n    getControlPoints() {}\n    getKnotsU() {}\n    getKnotsV() {}\n    getWeights() {}\n    evaluate(u, v) {}\n    evaluatePartialDerivative(u, v, orderU, orderV) {}\n    normal(u, v) {}\n    insertKnotU(u, multiplicity) {}\n    insertKnotV(v, multiplicity) {}\n    removeKnotU(u, multiplicity) {}\n    removeKnotV(v, multiplicity) {}\n    splitSurfaceU(u) {}\n    splitSurfaceV(v) {}\n}\n\nclass Utils {\n    static basisFunction(i, degree, u, knots) {}\n    static basisFunctionDerivative(i, degree, u, knots, order) {}\n    static deBoor(degree, controlPoints, knots, weights, u) {}\n    static deBoorDerivative(degree, controlPoints, knots, weights, u, order) {}\n    static findSpan(n, degree, u, knots) {}\n}\n```",
+      "hidden": false
+    }
+  ],
+  "title": "Implementation Plan for a NURBS Library in JavaScript",
+  "id": "20250123_012306725Z",
+  "targetFile": "./brep.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-01-23T01:23:18.372Z"
+}

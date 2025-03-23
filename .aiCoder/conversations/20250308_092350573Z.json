@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/default-system-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-system-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./.aiCoder/prompts/default-plan-prompt.md",
+      "filePath": "./.aiCoder/prompts/default-plan-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "./ticTacToe.js",
+      "filePath": "./ticTacToe.js",
+      "description": "// Code file to be edited",
+      "hidden": true
+    },
+    {
+      "role": "system",
+      "content": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "filePath": "./.aiCoder/prompts/snippet-production-prompt.md",
+      "description": "",
+      "hidden": true
+    },
+    {
+      "role": "user",
+      "content": "Lets make the tic tac toe game.",
+      "hidden": false
+    },
+    {
+      "role": "assistant",
+      "content": "Sure! Below is a simple implementation of a Tic Tac Toe game in JavaScript:\n\n```javascript\nconst readline = require('readline');\n\nconst rl = readline.createInterface({\n    input: process.stdin,\n    output: process.stdout\n});\n\nlet board = ['', '', '', '', '', '', '', '', ''];\nlet currentPlayer = 'X';\n\nconst printBoard = () => {\n    console.clear();\n    console.log('Current Board:');\n    console.log(`${board[0] || ' '}|${board[1] || ' '}|${board[2] || ' '}`);\n    console.log('-+-+-');\n    console.log(`${board[3] || ' '}|${board[4] || ' '}|${board[5] || ' '}`);\n    console.log('-+-+-');\n    console.log(`${board[6] || ' '}|${board[7] || ' '}|${board[8] || ' '}`);\n};\n\nconst checkWin = () => {\n    const winningCombinations = [\n        [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontal\n        [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertical\n        [0, 4, 8], [2, 4, 6]             // diagonal\n    ];\n\n    return winningCombinations.some(combination => {\n        const [a, b, c] = combination;\n        return board[a] && board[a] === board[b] && board[a] === board[c];\n    });\n};\n\nconst isDraw = () => {\n    return board.every(cell => cell);\n};\n\nconst makeMove = (position) => {\n    if (board[position]) {\n        console.log('Invalid move. Try again.');\n        return false;\n    }\n    board[position] = currentPlayer;\n    if (checkWin()) {\n        printBoard();\n        console.log(`Player ${currentPlayer} wins!`);\n        process.exit();\n    }\n    if (isDraw()) {\n        printBoard();\n        console.log('Its a draw!');\n        process.exit();\n    }\n    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';\n    return true;\n};\n\nconst askForMove = () => {\n    printBoard();\n    rl.question(`Player ${currentPlayer}, enter your move (0-8): `, input => {\n        const position = parseInt(input);\n        if (position >= 0 && position <= 8) {\n            if (makeMove(position)) {\n                askForMove();\n            } else {\n                askForMove();\n            }\n        } else {\n            console.log('Invalid input. Please enter a number between 0 and 8.');\n            askForMove();\n        }\n    });\n};\n\naskForMove();\n```\n\n### How to Run\n1. Save the code above in a file named `ticTacToe.js`.\n2. Make sure you have Node.js installed on your machine.\n3. Open your terminal and navigate to the directory where your `ticTacToe.js` file is located.\n4. Run the game using the command: \n   ```\n   node ticTacToe.js\n   ```\n5. Follow the prompts to play the game by entering a number from 0 to 8 corresponding to the board positions.\n\nEnjoy playing Tic Tac Toe! Let me know if you have any questions or need further enhancements!",
+      "hidden": false
+    }
+  ],
+  "title": "Creating a Simple Tic Tac Toe Game in JavaScript",
+  "id": "20250308_092350573Z",
+  "targetFile": "./ticTacToe.js",
+  "chatMode": "chat",
+  "conversationNew": false,
+  "lastModified": "2025-03-08T09:28:06.395Z"
+}

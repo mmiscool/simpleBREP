@@ -10,5 +10,11 @@
   "Write the next method in this class. ",
   "That was not in the correct format. ",
   "Look at the BooleanOperation class. Determine if we are missing any edge cases that need to be handled.\n\nAddress the first problem you find.\n\nRemember to only produce code snippets that follow the formatting rules.\nYou can include an explanation with your snippet. \n\nonly modify a few methods at a time. ",
-  "Are there any place holders or unimplemented portions of the classes?\nList each method as an individual numbered item in the list like this:\n## ACTION LIST\n1. className.methodName Detailed description of the problem that needs to be addressd \n2. className.methodName Detailed description of the problem that needs to be addressd \n\nAlso remember than when a specific method is selected to be worked on to follow the rules about code snippets and omit methods that are not being changed."
+  "Are there any place holders or unimplemented portions of the classes?\nList each method as an individual numbered item in the list like this:\n## ACTION LIST\n1. className.methodName Detailed description of the problem that needs to be addressd \n2. className.methodName Detailed description of the problem that needs to be addressd \n\nAlso remember than when a specific method is selected to be worked on to follow the rules about code snippets and omit methods that are not being changed.",
+  "Ok. Add the next logical test.",
+  "I want to add more tests.\n\nPlease add the next logical test.\n\n**All snippets must conform to the following example formatting**:\n```javascript\nclass exampleClass {\n   // ... existing methods\n   exampleMethod(){\n      //example code\n   }\n}\n```",
+  "Update the next test.",
+  "Look for problems in the Vector3D class. \nFix the first problem you find. ",
+  "Tell me about this code. ",
+  "TEll me about our conversation so far. \n"
 ]
